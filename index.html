@@ -14,10 +14,19 @@
         .text-orange-brand { color: #FF8C00; }
         .card-plan { background-color: #121212; transition: transform 0.3s ease; }
         
-        /* Estilos do Slider */
+        /* Estilos do Slider de Experiência */
         .slider-container { overflow: hidden; position: relative; }
         .slider-wrapper { display: flex; transition: transform 0.5s ease-in-out; }
         .slide { min-width: 100%; }
+
+        /* Estilos do Carrossel de Marcas - Livre e Solto */
+        .brands-container { 
+            overflow-x: auto; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+            padding-bottom: 10px;
+        }
+        .brands-container::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -30,6 +39,7 @@
             <nav class="hidden md:flex space-x-8 font-medium text-gray-600">
                 <a href="#home" class="hover:text-orange-brand">Início</a>
                 <a href="#experiencia" class="hover:text-orange-brand">Experiência</a>
+                <a href="#marcas" class="hover:text-orange-brand">Marcas</a>
                 <a href="#planos" class="hover:text-orange-brand">Planos</a>
             </nav>
             <a href="https://wa.me/5512920010804" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Assine Já</a>
@@ -100,6 +110,42 @@
         </div>
     </section>
 
+    <section id="marcas" class="py-16 bg-gray-50 border-b overflow-hidden">
+        <div class="container mx-auto px-6 relative">
+            <h2 class="text-center text-xl font-bold text-gray-800 mb-10 uppercase tracking-widest">Marcas que você pode receber na sua Box</h2>
+            
+            <div class="relative flex items-center group max-w-5xl mx-auto">
+                <button onclick="scrollBrands(-400)" class="absolute left-0 z-10 bg-white p-3 rounded-full shadow-xl border text-red-500 hover:scale-110 transition -ml-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+
+                <div id="brands-list" class="brands-container flex gap-6 px-10 py-2 w-full">
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">EUDORA</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">O Boticário</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">WELLA</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">BN CACHOS</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">SALOON LINE</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">KÉRASYS</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">INOAR</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">LOLA</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">PANTENTE</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">DOVE</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">widi CARE</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">Amend</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">Apice</div>
+                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">MUITO +</div>
+                    
+                   
+
+                </div>
+
+                <button onclick="scrollBrands(400)" class="absolute right-0 z-10 bg-white p-3 rounded-full shadow-xl border text-red-500 hover:scale-110 transition -mr-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <section id="planos" class="py-20 bg-gray-100 px-6">
         <div class="container mx-auto">
             <div class="text-center mb-16">
@@ -167,7 +213,8 @@
             </div>
         </div>
     </section>
-<section class="bg-gray-900 text-white py-16 px-6">
+
+    <section class="bg-gray-900 text-white py-16 px-6">
         <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <h2 class="text-3xl font-bold mb-6">Atendimento 7 dias na semana</h2>
@@ -186,11 +233,13 @@
             </div>
         </div>
     </section>
+
     <footer class="py-10 text-center text-gray-500 text-sm">
         <p>&copy; 2026 Amô Box - Curadoria de Beleza e Bem-estar.</p>
     </footer>
 
     <script>
+        // Lógica do Slider de Experiência
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         function moveSlide(direction) {
@@ -198,6 +247,32 @@
             if (currentSlide < 0) currentSlide = slides.length - 1;
             if (currentSlide >= slides.length) currentSlide = 0;
             document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Lógica do Carrossel de Marcas (Animação Ultra Fluida - EaseOut Cubic)
+        function scrollBrands(val) {
+            const container = document.getElementById('brands-list');
+            const startPosition = container.scrollLeft;
+            const duration = 600; // Duração do deslizamento em milissegundos (0.6s)
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                
+                // Calcula o progresso (de 0 a 1)
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                // Fórmula matemática para frear suavemente (Ease-Out Cubic)
+                const ease = 1 - Math.pow(1 - progress, 3);
+                
+                container.scrollLeft = startPosition + (val * ease);
+
+                if (timeElapsed < duration) {
+                    window.requestAnimationFrame(animation);
+                }
+            }
+            window.requestAnimationFrame(animation);
         }
     </script>
 </body>
