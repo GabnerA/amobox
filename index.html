@@ -14,12 +14,12 @@
         .text-orange-brand { color: #FF8C00; }
         .card-plan { background-color: #121212; transition: transform 0.3s ease; }
         
-        /* Estilos do Slider de Experiência */
+        /* Slider de Experiência */
         .slider-container { overflow: hidden; position: relative; }
         .slider-wrapper { display: flex; transition: transform 0.5s ease-in-out; }
         .slide { min-width: 100%; }
 
-        /* Estilos do Carrossel de Marcas - Livre e Solto */
+        /* Carrossel de Marcas */
         .brands-container { 
             overflow-x: auto; 
             -ms-overflow-style: none; 
@@ -37,14 +37,13 @@
                 AMÔ<span class="text-yellow-500">BOX</span>
             </div>
             <nav class="hidden md:flex space-x-6 font-medium text-gray-600 text-sm">
-                <a href="#home" class="hover:text-orange-brand">Início</a>
-                <a href="#experiencia" class="hover:text-orange-brand">Experiência</a>
-                <a href="#como-funciona" class="hover:text-orange-brand">Como Funciona</a>
-                <a href="#marcas" class="hover:text-orange-brand">Marcas</a>
-                <a href="#planos" class="hover:text-orange-brand">Planos</a>
+                <a href="#home" class="hover:text-orange-brand uppercase">Início</a>
+                <a href="#sobre" class="hover:text-orange-brand uppercase">Quem Somos</a>
+                <a href="#como-funciona" class="hover:text-orange-brand uppercase">Como Funciona</a>
+                <a href="#marcas" class="hover:text-orange-brand uppercase">Marcas</a>
+                <a href="#planos" class="hover:text-orange-brand uppercase">Planos</a>
             </nav>
-            <a href="https://wa.me/5512920010804" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Assine Já</a>
-        </div>
+                <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Assine Já</button>        </div>
     </header>
 
     <section id="home" class="bg-yellow-brand py-16 px-6">
@@ -53,8 +52,8 @@
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
                     O cuidado certo para <span class="text-white">todas as fases</span> do seu fio.
                 </h1>
-                <p class="text-lg text-gray-800 mb-8">
-                    Da vitalidade da juventude à elegância dos cabelos maduros. Nossa curadoria seleciona o que há de melhor no mercado para a saúde do seu cabelo.
+                <p class="text-lg text-gray-800 mb-8 font-medium">
+                    Da vitalidade da juventude à elegância dos cabelos maduros. Nossa curadoria seleciona o que há de melhor para você.
                 </p>
                 <a href="#planos" class="inline-block bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">Ver Planos</a>
             </div>
@@ -67,10 +66,6 @@
     </section>
 
     <section id="experiencia" class="py-16 bg-white border-b relative">
-        <div class="text-center mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-widest">A Experiência Amô Box</h2>
-        </div>
-
         <div class="slider-container max-w-5xl mx-auto px-12">
             <div class="slider-wrapper" id="slider">
                 <div class="slide flex flex-col md:flex-row items-center gap-8 px-4">
@@ -79,7 +74,7 @@
                     </div>
                     <div class="md:w-1/2">
                         <h3 class="text-3xl font-bold text-orange-brand mb-4">Curadoria Especializada</h3>
-                        <p class="text-gray-600 text-lg">Não enviamos apenas produtos. Enviamos uma solução baseada na saúde atual do seu fio, testada por especialistas.</p>
+                        <p class="text-gray-600 text-lg font-medium">Não enviamos apenas produtos. Enviamos uma solução baseada na saúde atual do seu fio, testada por especialistas.</p>
                     </div>
                 </div>
                 <div class="slide flex flex-col md:flex-row items-center gap-8 px-4">
@@ -101,138 +96,220 @@
                     </div>
                 </div>
             </div>
-
-            <button onclick="moveSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg border hover:bg-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <button onclick="moveSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg border hover:bg-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-        </div>
-    </section>
-
-    <section id="como-funciona" class="py-20 bg-gray-50 border-b">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-widest">Como Funciona</h2>
-                <p class="mt-4 text-gray-600 text-lg">Seu caminho para o cabelo dos sonhos em 3 passos simples.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="bg-yellow-500 rounded-3xl p-10 text-black shadow-xl hover:-translate-y-2 transition duration-300">
-                    <div class="passo-numero text-6xl font-black mb-4 opacity-90">1.</div>
-                    <h3 class="text-2xl font-bold mb-4">Escolha seu plano</h3>
-                    <p class="text-black opacity-90 font-medium">Veja nossas opções de assinaturas e escolha o plano que melhor atende a sua rotina e o seu bolso.</p>
-                </div>
-                <div class="bg-orange-brand rounded-3xl p-10 text-white shadow-xl hover:-translate-y-2 transition duration-300">
-                    <div class="passo-numero text-6xl font-black mb-4 opacity-90">2.</div>
-                    <h3 class="text-2xl font-bold mb-4">Preencha seu perfil</h3>
-                    <p class="text-white opacity-90 font-medium">Responda a um questionário especial para identificarmos as necessidades reais do seu cabelo e couro cabeludo.</p>
-                </div>
-                <div class="bg-purple-500 rounded-3xl p-10 text-white shadow-xl hover:-translate-y-2 transition duration-300">
-                    <div class="passo-numero text-6xl font-black mb-4 opacity-90">3.</div>
-                    <h3 class="text-2xl font-bold mb-4">Receba sua Box</h3>
-                    <p class="text-white opacity-90 font-medium">Todo mês, você recebe os benefícios do seu plano: produtos ideais, curadoria VIP e seu cronograma capilar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="marcas" class="py-16 bg-white border-b overflow-hidden">
-        <div class="container mx-auto px-6 relative">
-            <h2 class="text-center text-xl font-bold text-gray-800 mb-10 uppercase tracking-widest">Marcas que você pode receber na sua Box</h2>
             
-            <div class="relative flex items-center group max-w-5xl mx-auto">
-                <button onclick="scrollBrands(-400)" class="absolute left-0 z-10 bg-white p-3 rounded-full shadow-xl border text-red-500 hover:scale-110 transition -ml-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                </button>
+            <button onclick="moveSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg border">❮</button>
+            <button onclick="moveSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg border">❯</button>
+        </div>
+    </section>
 
-                <div id="brands-list" class="brands-container flex gap-6 px-10 py-2 w-full">
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">EUDORA</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">O Boticário</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">WELLA</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">BN CACHOS</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">SALOON LINE</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">KÉRASYS</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">INOAR</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">LOLA</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">PANTENTE</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">DOVE</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">widi CARE</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">Amend</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">Apice</div>
-                    <div class="min-w-[200px] bg-white border rounded-lg p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 h-28 font-bold text-gray-400 shadow-sm hover:shadow-md">MUITO +</div>
+    <section id="sobre" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col md:flex-row gap-12 items-center mb-16">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Quem Somos</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        A <span class="font-bold text-orange-brand">Amô Box</span> nasceu para ser a ponte entre a dúvida e o resultado. Através de uma análise cuidadosa das necessidades individuais — feita por meio do nosso formulário de diagnóstico — selecionamos produtos de forma inteligente e personalizada. Não entregamos apenas itens sortidos; entregamos a resposta para o que o seu cabelo precisa hoje, respeitando seu ritmo e seu bolso. 
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Combinamos tecnologia de análise digital com a expertise de profissionais para entregar na sua casa não apenas produtos, mas o conhecimento necessário para você dominar sua rotina de cuidados.
+                    </p>
                 </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                    <div class="h-40 bg-yellow-400 rounded-2xl p-6 flex items-end font-bold text-2xl uppercase italic">Confiança</div>
+                    <div class="h-40 bg-orange-500 rounded-2xl p-6 flex items-end font-bold text-2xl uppercase italic text-white">Carinho</div>
+                    <div class="h-40 bg-purple-600 rounded-2xl p-6 flex items-end font-bold text-2xl uppercase italic text-white">Expertise</div>
+                    <div class="h-40 bg-black rounded-2xl p-6 flex items-end font-bold text-2xl uppercase italic text-white">Beleza</div>
+                </div>
+            </div>
 
-                <button onclick="scrollBrands(400)" class="absolute right-0 z-10 bg-white p-3 rounded-full shadow-xl border text-red-500 hover:scale-110 transition -mr-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                </button>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="border-l-4 border-yellow-500 pl-6 py-4">
+                    <h3 class="text-xl font-bold mb-3 uppercase">Missão</h3>
+                    <p class="text-gray-600">Democratizar o acesso a produtos profissionais e educar cada cliente sobre a saúde do seu próprio cabelo.</p>
+                </div>
+                <div class="border-l-4 border-orange-500 pl-6 py-4">
+                    <h3 class="text-xl font-bold mb-3 uppercase">Visão</h3>
+                    <p class="text-gray-600">Ser a maior referência em curadoria capilar do Brasil, unindo praticidade e resultados reais de salão.</p>
+                </div>
+                <div class="border-l-4 border-purple-500 pl-6 py-4">
+                    <h3 class="text-xl font-bold mb-3 uppercase">Valores</h3>
+                    <p class="text-gray-600">Transparência, respeito à diversidade dos fios, ética profissional e compromisso com a autoestima feminina.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <section id="como-funciona" class="py-20 bg-gray-50 border-y">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-16">Como Funciona</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-yellow-500 rounded-3xl p-10 shadow-xl"><div class="passo-numero text-6xl font-black mb-4">1.</div><h3 class="text-2xl font-bold mb-4">Escolha seu plano</h3><p class="font-medium">Selecione a assinatura que melhor cabe na sua rotina.</p></div>
+                <div class="bg-orange-brand rounded-3xl p-10 text-white shadow-xl"><div class="passo-numero text-6xl font-black mb-4">2.</div><h3 class="text-2xl font-bold mb-4">Preencha seu perfil</h3><p class="opacity-90 font-medium">Nossa análise identifica o que seu cabelo realmente precisa.</p></div>
+                <div class="bg-purple-500 rounded-3xl p-10 text-white shadow-xl"><div class="passo-numero text-6xl font-black mb-4">3.</div><h3 class="text-2xl font-bold mb-4">Receba sua Box</h3><p class="opacity-90 font-medium">Todo mês, benefícios exclusivos e cronograma completo na sua porta.</p></div>
+            </div>
+        </div>
+    </section>
+
+<section id="marcas" class="py-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 relative">
+            <h2 class="text-center text-xl font-bold text-gray-800 mb-10 uppercase tracking-widest">Marcas parceiras</h2>
+            
+            <div class="relative flex items-center max-w-6xl mx-auto">
+                <button onclick="scrollBrands(-400)" class="absolute -left-4 md:-left-8 z-10 bg-white p-3 rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 transition">❮</button>
+                
+<div id="brands-list" class="brands-container flex gap-8 px-4 py-6 w-full">
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">EUDORA</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">O Boticário</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">WELLA</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">BN CACHOS</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">SALOON LINE</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">KÉRASYS</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">INOAR</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">LOLA</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">PANTENTE</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">DOVE</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">widi CARE</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Amend</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Apice</div>
+    
+    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">MUITO +</div>
+</div>
+                <button onclick="scrollBrands(400)" class="absolute -right-4 md:-right-8 z-10 bg-white p-3 rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 transition">❯</button>
+            </div>
+        </div>
+    </section>
     <section id="planos" class="py-20 bg-gray-100 px-6">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Nossas Assinaturas</h2>
-                <p class="mt-4 text-gray-600">Curadoria profissional que cabe no seu bolso.</p>
-            </div>
-
             <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="card-plan text-white rounded-3xl flex flex-col overflow-hidden shadow-2xl">
+                <div class="card-plan text-white rounded-3xl overflow-hidden shadow-2xl">
                     <div class="bg-yellow-500 h-4 w-full"></div>
                     <div class="p-8 flex flex-col justify-between h-full">
                         <div>
-                            <span class="bg-yellow-500 text-black text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Popular</span>
-                            <h3 class="text-2xl font-bold mt-4">Amô Essencial</h3>
-                            <p class="text-xl font-semibold mt-2 text-yellow-500">R$ 34,90<span class="text-sm font-normal text-gray-400">/mês</span></p>
+                            <h3 class="text-2xl font-bold">Amô Essencial</h3>
+                            <p class="text-xl font-semibold mt-2 text-yellow-500">R$ 34,90/mês</p>
                             <hr class="my-6 border-gray-800">
                             <ul class="space-y-4 text-sm text-gray-300 italic">
-                                <li>✦ Produtos para necessidade do seu cabelo e couro cabeludo</li>
+                                <li>✦ Produtos para necessidade do seu cabelo</li>
                                 <li>✦ Análise capilar básica digital</li>
-                                <li>✦ Receba junto com os produtos o seu Cronograma</li>                                
+                                <li>✦ Receba junto o seu Cronograma</li>
                                 <li>✦ Cancele quando quiser</li>
                             </ul>
                         </div>
-                        <a href="#" class="mt-10 block w-full bg-yellow-500 text-black text-center py-3 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg shadow-yellow-900/20">Assinar</a>
+                        <a href="#" class="mt-10 block bg-yellow-500 text-black text-center py-3 rounded-full font-bold">Assinar</a>
                     </div>
                 </div>
-
-                <div class="card-plan text-white rounded-3xl flex flex-col overflow-hidden shadow-2xl border-2 border-orange-brand">
+                <div class="card-plan text-white rounded-3xl overflow-hidden shadow-2xl border-2 border-orange-brand">
                     <div class="bg-orange-brand h-4 w-full"></div>
                     <div class="p-8 flex flex-col justify-between h-full">
                         <div>
-                            <span class="bg-orange-brand text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Completo</span>
-                            <h3 class="text-2xl font-bold mt-4">Amô Premium</h3>
-                            <p class="text-xl font-semibold mt-2 text-orange-brand">R$ 49,90<span class="text-sm font-normal text-gray-400">/mês</span></p>
+                            <h3 class="text-2xl font-bold">Amô Premium</h3>
+                            <p class="text-xl font-semibold mt-2 text-orange-brand">R$ 49,90/mês</p>
                             <hr class="my-6 border-gray-800">
                             <ul class="space-y-4 text-sm text-gray-300 italic">
                                 <li>✦ Todos os benefícios anteriores</li>
                                 <li>✦ Lembrete no dia do tratamento</li>
-                                <li>✦ Análise da sua fibra capilar feita por um especialista</li>
-                                <li>✦ Cronograma personalizado para a sua rotina</li>
+                                <li>✦ Análise da fibra por especialista</li>
+                                <li>✦ Cronograma personalizado</li>
                             </ul>
                         </div>
-                        <a href="#" class="mt-10 block w-full bg-orange-brand text-black text-center py-3 rounded-full font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-900/20">Assinar</a>
+                        <a href="#" class="mt-10 block bg-orange-brand text-white text-center py-3 rounded-full font-bold">Assinar</a>
                     </div>
                 </div>
-
-                <div class="card-plan text-white rounded-3xl flex flex-col overflow-hidden shadow-2xl">
+                <div class="card-plan text-white rounded-3xl overflow-hidden shadow-2xl">
                     <div class="bg-purple-500 h-4 w-full"></div>
                     <div class="p-8 flex flex-col justify-between h-full">
                         <div>
-                            <span class="bg-purple-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Especializado</span>
-                            <h3 class="text-2xl font-bold mt-4">Amô Profissional</h3>
-                            <p class="text-xl font-semibold mt-2 text-purple-400">R$ 79,90<span class="text-sm font-normal text-gray-400">/mês</span></p>
+                            <h3 class="text-2xl font-bold">Amô Profissional</h3>
+                            <p class="text-xl font-semibold mt-2 text-purple-400">R$ 79,90/mês</p>
                             <hr class="my-6 border-gray-800">
                             <ul class="space-y-4 text-sm text-gray-300 italic">
-                                <li>✦ Foco em efeito salão</li>
-                                <li>✦ Produtos profissionais para cuidar do seu cabelo em casa</li>
-                                <li>✦ Nos conte o que vai fazer em seu cabelo nos próximos dias que iniciamos os cuidados antes mesmo</li>
-                                <li>✦ Além da análise da sua fibra, tenha acesso a análise do seu couro cabeludo</li>
+                                <li>✦ Foco em efeito salão em casa</li>
+                                <li>✦ Produtos profissionais exclusivos</li>
+                                <li>✦ Pré-cuidados para eventos/química</li>
+                                <li>✦ Análise profunda do couro cabeludo</li>
                             </ul>
                         </div>
-                        <a href="#" class="mt-10 block w-full bg-purple-500 text-black text-center py-3 rounded-full font-bold hover:bg-purple-400 transition shadow-lg shadow-purple-900/20">Assinar</a>
+                        <a href="#" class="mt-10 block bg-purple-500 text-black text-center py-3 rounded-full font-bold">Assinar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="faq" class="py-20 bg-white border-t">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-12">Dúvidas Frequentes</h2>
+
+            <div class="space-y-2">
+                <div class="border-b border-gray-200">
+                    <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
+                        1. Qual edição da Box irei receber?
+                        <span class="text-3xl font-light text-orange-brand transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="text-gray-600 pb-6 pr-8 leading-relaxed">
+                            Não temos edições com seleções fixas de produtos por aqui! <strong>Cada box é única e ultra personalizada.</strong> Todo mês, você recebe itens diferentes das nossas marcas parceiras, escolhidos a dedo para dar "match" perfeito com as necessidades atuais do seu fio.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
+                        2. Quais formas de pagamento são aceitas?
+                        <span class="text-3xl font-light text-orange-brand transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="text-gray-600 pb-6 pr-8 leading-relaxed">
+                            Aceitamos <strong>Cartão de Crédito</strong> (com cobrança mensal recorrente que não compromete o limite total do seu cartão) e <strong>Pix</strong>. É tudo online, prático e 100% seguro.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
+                        3. Posso cancelar minha assinatura quando quiser?
+                        <span class="text-3xl font-light text-orange-brand transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="text-gray-600 pb-6 pr-8 leading-relaxed">
+                            Sim! Acreditamos na liberdade. Você pode pausar ou cancelar a sua assinatura a qualquer momento, sem burocracia, multas ou pegadinhas, direto pelo nosso canal de atendimento.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
+                        4. Qual é o prazo de entrega da Box?
+                        <span class="text-3xl font-light text-orange-brand transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="text-gray-600 pb-6 pr-8 leading-relaxed">
+                            Após a confirmação do pagamento e o preenchimento do seu Perfil de Beleza, nossa equipe inicia a curadoria. O prazo de montagem é de até 10 dias úteis. A partir daí, o prazo de entrega depende do seu endereço e da transportadora da sua região.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
+                        5. E se algum produto vier com defeito ou vazando?
+                        <span class="text-3xl font-light text-orange-brand transition-transform duration-300">+</span>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="text-gray-600 pb-6 pr-8 leading-relaxed">
+                            Trabalhamos com o máximo de carinho na embalagem, mas imprevistos acontecem no transporte. Se receber algo avariado, basta nos chamar no WhatsApp em até 7 dias úteis enviando uma foto, e faremos a reposição sem custo algum para você!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -242,25 +319,135 @@
     <section class="bg-gray-900 text-white py-16 px-6">
         <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-3xl font-bold mb-6">Atendimento 7 dias na semana</h2>
-                <p class="text-gray-400 mb-6">Oferecemos consultoria digital personalizada para que você tenha a experiência de salão sem sair de casa.</p>
+                <h2 class="text-3xl font-bold mb-6 italic uppercase">Fale com uma especialista</h2>
+                <p class="text-gray-400 mb-6 font-medium leading-relaxed">Nossa consultoria digital personalizada garante que você tenha a experiência de salão sem sair de casa.</p>
                 <ul class="space-y-4">
-                    <li class="flex items-center"><span class="text-yellow-400 mr-2">✔</span> Envio para toda a região próxima</li>
                     <li class="flex items-center"><span class="text-yellow-400 mr-2">✔</span> Especialistas em cabelos brasileiros</li>
                     <li class="flex items-center"><span class="text-yellow-400 mr-2">✔</span> Cuidado pré e pós quimica</li>
                 </ul>
             </div>
-            <div class="bg-gray-800 p-8 rounded-xl">
-                <h3 class="text-2xl font-bold mb-4 text-yellow-brand text-center">Dúvidas? Fale conosco!</h3>
-                <a href="https://wa.me/5512920010804" class="block w-full bg-green-500 text-white text-center py-4 rounded-lg font-bold text-lg hover:bg-green-600 transition">
-                    WhatsApp Consultora
-                </a>
-            </div>
+            <div class="bg-gray-800 p-8 rounded-xl text-center">
+                <h3 class="text-2xl font-bold mb-4 text-yellow-brand uppercase">Converse com uma Consultora</h3>
+                    <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Falar com Consultora</button>            </div>
         </div>
     </section>
 
-    <footer class="py-10 text-center text-gray-500 text-sm">
-        <p>&copy; 2026 Amô Box - Curadoria de Beleza e Bem-estar.</p>
+<div id="quiz-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
+            
+            <button onclick="fecharQuiz()" class="absolute top-4 right-4 text-white hover:text-gray-200 font-bold text-2xl transition z-10">×</button>
+            
+            <div class="bg-orange-brand p-6 text-white text-center shrink-0">
+                <h3 class="text-2xl font-bold uppercase tracking-wide">Seu Perfil Capilar</h3>
+                <p class="text-sm opacity-90 mt-1">Preencha rapidinho para a nossa curadoria te conhecer!</p>
+            </div>
+
+            <form id="form-quiz" onsubmit="enviarQuiz(event)" class="p-6 overflow-y-auto space-y-4">
+                
+                <div class="border-b pb-4 mb-4">
+                    <h4 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-widest">1. Seus Dados</h4>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <input type="text" id="q-nome" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <input type="email" id="q-email" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu melhor e-mail">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="tel" id="q-whatsapp" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="WhatsApp (com DDD)">
+                            <input type="number" id="q-idade" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Idade">
+                        </div>
+                        <div>
+                            <select id="q-genero" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
+                                <option value="" disabled selected>Identidade de Gênero...</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Outro / Prefiro não dizer">Outro / Prefiro não dizer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-widest">2. Sobre o seu cabelo</h4>
+                    
+                    <div class="space-y-3">
+                        <select id="q-tipo" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
+                            <option value="" disabled selected>Tipo de curvatura...</option>
+                            <option value="Liso (1A a 1C)">Liso (1A a 1C)</option>
+                            <option value="Ondulado (2A a 2C)">Ondulado (2A a 2C)</option>
+                            <option value="Cacheado (3A a 3C)">Cacheado (3A a 3C)</option>
+                            <option value="Crespo (4A a 4C)">Crespo (4A a 4C)</option>
+                        </select>
+
+                        <select id="q-couro" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
+                            <option value="" disabled selected>Saúde do couro cabeludo...</option>
+                            <option value="Normal/Saudável">Normal e saudável</option>
+                            <option value="Muito oleoso">Muito oleoso</option>
+                            <option value="Seco ou sensível">Seco ou sensível</option>
+                            <option value="Com caspa/descamação">Com caspa/descamação</option>
+                        </select>
+
+                        <select id="q-objetivo" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm font-bold text-orange-brand">
+                            <option value="" disabled selected>Qual seu MAIOR objetivo hoje?</option>
+                            <option value="Hidratação e Brilho">Hidratação e Brilho extremo</option>
+                            <option value="Reconstrução e Força">Reconstrução (Pós-química)</option>
+                            <option value="Crescimento Saudável">Crescimento Saudável</option>
+                            <option value="Controle de Frizz e Volume">Controle de Frizz e Volume</option>
+                            <option value="Definição de Cachos">Definição de Cachos</option>
+                        </select>
+
+                        <div class="grid grid-cols-2 gap-4 pt-2">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Possui Química?</label>
+                                <div class="flex gap-2">
+                                    <label class="text-sm"><input type="radio" name="quimica" value="Sim" required class="accent-orange-brand"> Sim</label>
+                                    <label class="text-sm"><input type="radio" name="quimica" value="Não" class="accent-orange-brand"> Não</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Transição Capilar?</label>
+                                <div class="flex gap-2">
+                                    <label class="text-sm"><input type="radio" name="transicao" value="Sim" required class="accent-orange-brand"> Sim</label>
+                                    <label class="text-sm"><input type="radio" name="transicao" value="Não" class="accent-orange-brand"> Não</label>
+                                </div>
+                            </div>
+                            <div class="col-span-2 mt-2">
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Usa secador, chapinha ou babyliss?</label>
+                                <div class="flex gap-4">
+                                    <label class="text-sm"><input type="radio" name="calor" value="Sim, com frequência" required class="accent-orange-brand"> Sim, com frequência</label>
+                                    <label class="text-sm"><input type="radio" name="calor" value="Raramente/Nunca" class="accent-orange-brand"> Raramente/Nunca</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 pb-2">
+                    <button type="submit" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl text-lg hover:bg-green-600 transition shadow-lg flex justify-center items-center">
+                        Concluir e Enviar Perfil
+                    </button>
+                    <p class="text-center text-[10px] text-gray-400 mt-2">Seus dados estão seguros e serão usados apenas para curadoria.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="success-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
+        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-8 text-center relative">
+            <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">
+                ✓
+            </div>
+            <h3 class="text-2xl font-black text-gray-900 mb-3 uppercase tracking-tighter">Prontinho, <br><span id="success-nome" class="text-orange-brand"></span>!</h3>
+            <p class="text-gray-600 mb-8 font-medium">Seu perfil foi enviado com sucesso para a nossa curadoria. Fique de olho, nossa especialista vai te chamar no WhatsApp muito em breve! 🧡</p>
+            <button onclick="fecharSucesso()" class="w-full bg-orange-brand text-white font-bold py-4 rounded-xl hover:bg-orange-600 transition shadow-lg uppercase tracking-wider">
+                Entendido
+            </button>
+        </div>
+    </div>
+    <footer class="py-10 text-center text-gray-500 text-sm italic">
+        <p>&copy; 2026 Amô Box - Especialistas em Curadoria Capilar.</p>
     </footer>
 
     <script>
@@ -296,6 +483,116 @@
             }
             window.requestAnimationFrame(animation);
         }
+    </script>
+
+<script>
+        // 1. Lógica do FAQ (Acordeão)
+        const faqButtons = document.querySelectorAll('.faq-button');
+        
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('span');
+                
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    icon.textContent = '+';
+                } else {
+                    document.querySelectorAll('.faq-answer').forEach(el => {
+                        el.style.maxHeight = null;
+                        if(el.previousElementSibling) {
+                            el.previousElementSibling.querySelector('span').textContent = '+';
+                        }
+                    });
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.textContent = '−';
+                }
+            });
+        });
+
+        // 2. Lógicas do Quiz e Modais
+        function abrirQuiz() { 
+            document.getElementById('quiz-modal').classList.remove('hidden'); 
+        }
+        function fecharQuiz() { 
+            document.getElementById('quiz-modal').classList.add('hidden'); 
+        }
+        function fecharSucesso() { 
+            document.getElementById('success-modal').classList.add('hidden'); 
+        }
+
+        // 3. Função para enviar ao Discord
+        async function enviarQuiz(event) {
+            event.preventDefault(); 
+            
+            const nome = document.getElementById('q-nome').value;
+            const email = document.getElementById('q-email').value;
+            const whatsapp = document.getElementById('q-whatsapp').value;
+            const idade = document.getElementById('q-idade').value;
+            const genero = document.getElementById('q-genero').value;
+            const tipo = document.getElementById('q-tipo').value;
+            const couro = document.getElementById('q-couro').value;
+            const objetivo = document.getElementById('q-objetivo').value;
+            const quimica = document.querySelector('input[name="quimica"]:checked').value;
+            const transicao = document.querySelector('input[name="transicao"]:checked').value;
+            const calor = document.querySelector('input[name="calor"]:checked').value;
+
+            // COLOQUE SUA URL DO WEBHOOK DO DISCORD AQUI
+            const webhookUrl = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
+
+            const payload = {
+                embeds: [{
+                    title: "🚀 NOVO LEAD - Amô Box!",
+                    description: "Temos um novo perfil capilar pronto para curadoria.",
+                    color: 16747520, 
+                    fields: [
+                        { name: "👤 Cliente", value: `**Nome:** ${nome}\n**Idade:** ${idade} anos\n**Gênero:** ${genero}`, inline: false },
+                        { name: "📞 Contato", value: `**WhatsApp:** ${whatsapp}\n**E-mail:** ${email}`, inline: false },
+                        { name: "🎯 Objetivo Principal", value: `> ${objetivo}`, inline: false },
+                        { name: "👩🏽‍🦱 Estrutura do Fio", value: tipo, inline: true },
+                        { name: "💆🏽‍♀️ Couro Cabeludo", value: couro, inline: true },
+                        { name: "🔥 Usa Calor?", value: calor, inline: true },
+                        { name: "🧪 Química?", value: quimica, inline: true },
+                        { name: "🔄 Transição?", value: transicao, inline: true }
+                    ],
+                    footer: { text: "Curadoria Amô Box" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const btnSubmit = document.querySelector('button[type="submit"]');
+                const textoOriginal = btnSubmit.innerHTML;
+                btnSubmit.innerHTML = "Enviando Perfil...";
+                btnSubmit.disabled = true;
+
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    fecharQuiz(); // Fecha o formulário
+                    
+                    // Mostra o nome da pessoa na tela de sucesso
+                    document.getElementById('success-nome').textContent = nome.split(' ')[0];
+                    document.getElementById('success-modal').classList.remove('hidden');
+                    
+                    // Limpa o formulário
+                    document.getElementById('form-quiz').reset();
+                } else {
+                    alert("Ops! Houve um problema ao enviar. Tente novamente ou nos chame no WhatsApp.");
+                }
+
+                btnSubmit.innerHTML = textoOriginal;
+                btnSubmit.disabled = false;
+
+            } catch (error) {
+                console.error("Erro ao enviar:", error);
+                alert("Erro de conexão. Verifique sua internet e tente novamente.");
+            }
+        }       
     </script>
 </body>
 </html>
