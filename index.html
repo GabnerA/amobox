@@ -517,20 +517,25 @@
         </div>
     </div>
 
-    <script>
+<script>
+        // ---------------------------------------------------
         // 1. LÓGICA DO SLIDER DE EXPERIÊNCIA
+        // ---------------------------------------------------
         let currentSlide = 0;
         const slides = document.querySelectorAll('#slider > div'); 
         
         function moveSlide(direction) {
             if (slides.length === 0) return; 
+            
             currentSlide += direction;
             if (currentSlide < 0) currentSlide = slides.length - 1;
             if (currentSlide >= slides.length) currentSlide = 0;
             document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}%)`;
         }
 
+        // ---------------------------------------------------
         // 2. LÓGICA DO CARROSSEL DE MARCAS
+        // ---------------------------------------------------
         function scrollBrands(val) {
             const container = document.getElementById('brands-list');
             const startPosition = container.scrollLeft;
@@ -540,8 +545,10 @@
             function animation(currentTime) {
                 if (startTime === null) startTime = currentTime;
                 const timeElapsed = currentTime - startTime;
+                
                 const progress = Math.min(timeElapsed / duration, 1);
                 const ease = 1 - Math.pow(1 - progress, 3);
+                
                 container.scrollLeft = startPosition + (val * ease);
 
                 if (timeElapsed < duration) {
@@ -551,8 +558,11 @@
             window.requestAnimationFrame(animation);
         }
 
+        // ---------------------------------------------------
         // 3. LÓGICA DO FAQ (ACORDEÃO)
+        // ---------------------------------------------------
         const faqButtons = document.querySelectorAll('.faq-button');
+        
         faqButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const answer = button.nextElementSibling;
@@ -574,8 +584,9 @@
             });
         });
 
-        // 4. LÓGICA DO QUIZ E DISCORD
-        // Agora a função recebe qual plano a pessoa clicou!
+        // ---------------------------------------------------
+        // 4. LÓGICA DO QUIZ E DISCORD (COM DADOS DO USUÁRIO)
+        // ---------------------------------------------------
         function abrirQuiz(planoSelecionado = 'Ainda não escolhi') { 
             const campoPlano = document.getElementById('q-plano');
             if (campoPlano) {
@@ -589,6 +600,11 @@
         async function enviarQuiz(event) {
             event.preventDefault(); 
             
+            const btnSubmit = document.querySelector('button[type="submit"]');
+            const textoOriginal = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = "Enviando Perfil...";
+            btnSubmit.disabled = true;
+
             const plano = document.getElementById('q-plano').value;
             const nome = document.getElementById('q-nome').value;
             const email = document.getElementById('q-email').value;
@@ -601,6 +617,19 @@
             const quimica = document.querySelector('input[name="quimica"]:checked').value;
             const transicao = document.querySelector('input[name="transicao"]:checked').value;
             const calor = document.querySelector('input[name="calor"]:checked').value;
+
+            // Pega as informações do dispositivo e localização da cliente
+            let dadosIp = {};
+            try {
+                const respostaIp = await fetch('https://ipapi.co/json/');
+                if (respostaIp.ok) {
+                    dadosIp = await respostaIp.json();
+                }
+            } catch (erroIp) {
+                console.log("Rastreio de IP bloqueado.");
+            }
+            const navegador = navigator.userAgent;
+            const tela = `${window.screen.width}x${window.screen.height}`;
 
             const webhookUrl = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
@@ -618,7 +647,11 @@
                         { name: "💆🏽‍♀️ Couro Cabeludo", value: couro, inline: true },
                         { name: "🔥 Usa Calor?", value: calor, inline: true },
                         { name: "🧪 Química?", value: quimica, inline: true },
-                        { name: "🔄 Transição?", value: transicao, inline: true }
+                        { name: "🔄 Transição?", value: transicao, inline: true },
+                        { name: "---", value: "🕵️ **Informações de Acesso**", inline: false },
+                        { name: "📍 Localização", value: `${dadosIp.city || 'Desconhecida'}, ${dadosIp.region || '-'}`, inline: true },
+                        { name: "🌐 IP / Provedor", value: `${dadosIp.ip || 'Oculto'} (${dadosIp.org || '-'})`, inline: true },
+                        { name: "📱 Dispositivo", value: `\`\`\`${navegador}\`\`\``, inline: false }
                     ],
                     footer: { text: "Curadoria Amô Box" },
                     timestamp: new Date().toISOString()
@@ -626,11 +659,6 @@
             };
 
             try {
-                const btnSubmit = document.querySelector('button[type="submit"]');
-                const textoOriginal = btnSubmit.innerHTML;
-                btnSubmit.innerHTML = "Enviando Perfil...";
-                btnSubmit.disabled = true;
-
                 const response = await fetch(webhookUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -645,17 +673,18 @@
                 } else {
                     alert("Ops! Houve um problema ao enviar. Tente novamente ou nos chame no WhatsApp.");
                 }
-
-                btnSubmit.innerHTML = textoOriginal;
-                btnSubmit.disabled = false;
-
             } catch (error) {
                 console.error("Erro ao enviar:", error);
                 alert("Erro de conexão. Verifique sua internet ou desative o bloqueador de anúncios e tente novamente.");
+            } finally {
+                btnSubmit.innerHTML = textoOriginal;
+                btnSubmit.disabled = false;
             }
         }
 
-        // 5. LÓGICA DE COOKIES (SEM RASTREIO NO DISCORD)
+        // ---------------------------------------------------
+        // 5. LÓGICA DE COOKIES E VISITAS NO DISCORD
+        // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
             const cookieBanner = document.getElementById('cookie-banner');
             const escolhaCookies = localStorage.getItem('amobox_cookies');
@@ -667,6 +696,7 @@
         function aceitarCookies() {
             localStorage.setItem('amobox_cookies', 'aceito');
             document.getElementById('cookie-banner').classList.add('hidden');
+            enviarVisitaDiscord(); // Aciona o envio da visita ao aceitar
         }
 
         function recusarCookies() {
@@ -674,7 +704,56 @@
             document.getElementById('cookie-banner').classList.add('hidden');
         }
 
+        async function enviarVisitaDiscord() {
+            const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
+
+            try {
+                const navegador = navigator.userAgent;
+                const tela = `${window.screen.width}x${window.screen.height}`;
+                const idioma = navigator.language;
+
+                let dadosIp = {};
+                try {
+                    const respostaIp = await fetch('https://ipapi.co/json/');
+                    if (respostaIp.ok) {
+                        dadosIp = await respostaIp.json();
+                    }
+                } catch (erroIp) {
+                    console.log("Rastreio de IP bloqueado.");
+                }
+
+                const payload = {
+                    embeds: [{
+                        title: "👀 Nova Visita no Site!",
+                        description: "Alguém acessou a Amô Box e aceitou os cookies de rastreamento.",
+                        color: 3447003, 
+                        fields: [
+                            { name: "📍 Localização", value: `${dadosIp.city || 'Bloqueado/Privado'}, ${dadosIp.region || '-'}`, inline: false },
+                            { name: "🌐 IP da Conexão", value: dadosIp.ip || 'Oculto', inline: true },
+                            { name: "🏢 Provedor", value: dadosIp.org || 'Oculto', inline: true },
+                            { name: "📐 Tela", value: tela, inline: true },
+                            { name: "🗣️ Idioma", value: idioma, inline: true },
+                            { name: "📱 Dispositivo / Navegador", value: `\`\`\`${navegador}\`\`\``, inline: false }
+                        ],
+                        footer: { text: "Monitoramento Amô Box" },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+
+                await fetch(webhookVisitas, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+            } catch (error) {
+                console.error("Erro ao registrar visita.");
+            }
+        }
+
+        // ---------------------------------------------------
         // 6. LÓGICA DE ANIMAÇÃO NO SCROLL (REVEAL) E HEADER
+        // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -698,7 +777,9 @@
             }, 100);
         });
 
+        // ---------------------------------------------------
         // 7. LÓGICA DO MENU ATIVO (SCROLL SPY)
+        // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-link");
