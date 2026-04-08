@@ -577,8 +577,8 @@
             const transicao = document.querySelector('input[name="transicao"]:checked').value;
             const calor = document.querySelector('input[name="calor"]:checked').value;
 
-            const webhookUrl = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
-
+            // Usamos o corsproxy.io como ponte para enganar o bloqueio do Discord
+const webhookUrl = "https://corsproxy.io/?https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
             const payload = {
                 embeds: [{
                     title: "🚀 NOVO LEAD - Amô Box!",
@@ -653,7 +653,8 @@
         }
 
         async function enviarVisitaDiscord() {
-            const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
+            // Usamos o corsproxy.io como ponte para enganar o bloqueio do Discord
+const webhookUrl = "https://corsproxy.io/?https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
             try {
                 const navegador = navigator.userAgent;
