@@ -65,40 +65,51 @@
         </div>
     </section>
 
-    <section id="experiencia" class="py-16 bg-white border-b relative">
-        <div class="slider-container max-w-5xl mx-auto px-12">
-            <div class="slider-wrapper" id="slider">
-                <div class="slide flex flex-col md:flex-row items-center gap-8 px-4">
-                    <div class="md:w-1/2">
-                        <img src="https://static.vecteezy.com/ti/fotos-gratis/p2/1226522-mulher-abertura-caixa-de-papelao-no-sofa-gratis-foto.jpg" class="rounded-2xl shadow-xl">
+   <section id="experiencia" class="py-20 bg-white border-b">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-widest">A Experiência Amô Box</h2>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-12">
+            
+            <div class="overflow-hidden w-full rounded-2xl">
+                <div class="flex transition-transform duration-500 ease-in-out" id="slider">
+                    
+                    <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end">
+                            <img src="https://static.vecteezy.com/ti/fotos-gratis/p2/1226522-mulher-abertura-caixa-de-papelao-no-sofa-gratis-foto.jpg" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
+                        </div>
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <h3 class="text-3xl font-bold text-orange-brand mb-4">Curadoria Especializada</h3>
+                            <p class="text-gray-600 text-lg font-medium max-w-md">Não enviamos apenas produtos. Enviamos uma solução baseada na saúde atual do seu fio, testada por especialistas.</p>
+                        </div>
                     </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold text-orange-brand mb-4">Curadoria Especializada</h3>
-                        <p class="text-gray-600 text-lg font-medium">Não enviamos apenas produtos. Enviamos uma solução baseada na saúde atual do seu fio, testada por especialistas.</p>
+
+                    <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end">
+                            <img src="https://www.loreal-paris.com.br/-/media/project/loreal/brand-sites/oap/americas/br/artigos/cabelo/artigos-planilha-nova-1_1/imagens-centralizadas-3386/4629-a-4689/4630-voce-sabia-que-cabelo-branco-pode-surgir-apos-um-choque-emocional.jpg" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
+                        </div>
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <h3 class="text-3xl font-bold text-yellow-600 mb-4">Cabelos Maduros & Grisalhos</h3>
+                            <p class="text-gray-600 text-lg font-medium max-w-md">Cuidado especial para fios que precisam de mais hidratação e reposição de massa. Dignidade e brilho para sua maturidade.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="slide flex flex-col md:flex-row items-center gap-8 px-4">
-                    <div class="md:w-1/2">
-                        <img src="https://www.loreal-paris.com.br/-/media/project/loreal/brand-sites/oap/americas/br/artigos/cabelo/artigos-planilha-nova-1_1/imagens-centralizadas-3386/4629-a-4689/4630-voce-sabia-que-cabelo-branco-pode-surgir-apos-um-choque-emocional.jpg" class="rounded-2xl shadow-xl">
+
+                    <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end">
+                            <img src="https://img.cdndsgni.com/preview/10225122.jpg" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
+                        </div>
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <h3 class="text-3xl font-bold text-orange-brand mb-4">Cronograma na Palma da Mão</h3>
+                            <p class="text-gray-600 text-lg font-medium max-w-md">Todo mês, você recebe um guia de como e quando usar cada item. Transformamos sua casa em um SPA capilar.</p>
+                        </div>
                     </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold text-yellow-600 mb-4">Cabelos Maduros & Grisalhos</h3>
-                        <p class="text-gray-600 text-lg">Cuidado especial para fios que precisam de mais hidratação e reposição de massa. Dignidade e brilho para sua maturidade.</p>
-                    </div>
-                </div>
-                <div class="slide flex flex-col md:flex-row items-center gap-8 px-4">
-                    <div class="md:w-1/2">
-                        <img src="https://img.cdndsgni.com/preview/10225122.jpg" class="rounded-2xl shadow-xl">
-                    </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold text-orange-brand mb-4">Cronograma na Palma da Mão</h3>
-                        <p class="text-gray-600 text-lg">Todo mês, você recebe um guia de como e quando usar cada item. Transformamos sua casa em um SPA capilar.</p>
-                    </div>
+
                 </div>
             </div>
             
-            <button onclick="moveSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg border">❮</button>
-            <button onclick="moveSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg border">❯</button>
+            <button onclick="moveSlide(-1)" class="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❮</button>
+            <button onclick="moveSlide(1)" class="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❯</button>
         </div>
     </section>
 
