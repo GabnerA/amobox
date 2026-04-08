@@ -480,18 +480,27 @@
             </div>
         </div>
     </div>
-    <script>
-        // Lógica do Slider de Experiência
+<script>
+        // ---------------------------------------------------
+        // 1. LÓGICA DO SLIDER DE EXPERIÊNCIA
+        // ---------------------------------------------------
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        // Pega todos os slides que existem dentro do container
+        const slides = document.querySelectorAll('#slider > div'); 
+        
         function moveSlide(direction) {
+            // Se não houver slides, não faz nada para evitar erro
+            if (slides.length === 0) return; 
+            
             currentSlide += direction;
             if (currentSlide < 0) currentSlide = slides.length - 1;
             if (currentSlide >= slides.length) currentSlide = 0;
             document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}%)`;
         }
 
-        // Lógica do Carrossel de Marcas (Animação Ultra Fluida)
+        // ---------------------------------------------------
+        // 2. LÓGICA DO CARROSSEL DE MARCAS
+        // ---------------------------------------------------
         function scrollBrands(val) {
             const container = document.getElementById('brands-list');
             const startPosition = container.scrollLeft;
@@ -513,10 +522,10 @@
             }
             window.requestAnimationFrame(animation);
         }
-    </script>
 
-<script>
-        // 1. Lógica do FAQ (Acordeão)
+        // ---------------------------------------------------
+        // 3. LÓGICA DO FAQ (ACORDEÃO)
+        // ---------------------------------------------------
         const faqButtons = document.querySelectorAll('.faq-button');
         
         faqButtons.forEach(button => {
@@ -540,7 +549,9 @@
             });
         });
 
-        // 2. Lógicas do Quiz e Modais
+        // ---------------------------------------------------
+        // 4. LÓGICA DO QUIZ E DISCORD
+        // ---------------------------------------------------
         function abrirQuiz() { 
             document.getElementById('quiz-modal').classList.remove('hidden'); 
         }
@@ -551,7 +562,6 @@
             document.getElementById('success-modal').classList.add('hidden'); 
         }
 
-        // 3. Função para enviar formulário ao Discord
         async function enviarQuiz(event) {
             event.preventDefault(); 
             
@@ -619,7 +629,9 @@
             }
         }
 
-        // 4. Lógica do Banner de Cookies e Rastreamento para o Discord
+        // ---------------------------------------------------
+        // 5. LÓGICA DE COOKIES E VISITAS (DISCORD)
+        // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
             const cookieBanner = document.getElementById('cookie-banner');
             const escolhaCookies = localStorage.getItem('amobox_cookies');
@@ -650,7 +662,6 @@
 
                 let dadosIp = {};
 
-                // Tenta pegar o IP. Se o AdBlock bloquear, não quebra o site.
                 try {
                     const respostaIp = await fetch('https://ipapi.co/json/');
                     if (respostaIp.ok) {
