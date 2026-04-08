@@ -485,11 +485,9 @@
         // 1. LÓGICA DO SLIDER DE EXPERIÊNCIA
         // ---------------------------------------------------
         let currentSlide = 0;
-        // Pega todos os slides que existem dentro do container
         const slides = document.querySelectorAll('#slider > div'); 
         
         function moveSlide(direction) {
-            // Se não houver slides, não faz nada para evitar erro
             if (slides.length === 0) return; 
             
             currentSlide += direction;
@@ -577,8 +575,9 @@
             const transicao = document.querySelector('input[name="transicao"]:checked').value;
             const calor = document.querySelector('input[name="calor"]:checked').value;
 
-            // Usamos o corsproxy.io como ponte para enganar o bloqueio do Discord
-const webhookUrl = "https://corsproxy.io/?https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
+            // Link Direto do Discord
+            const webhookUrl = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
+
             const payload = {
                 embeds: [{
                     title: "🚀 NOVO LEAD - Amô Box!",
@@ -625,7 +624,7 @@ const webhookUrl = "https://corsproxy.io/?https://discord.com/api/webhooks/14911
 
             } catch (error) {
                 console.error("Erro ao enviar:", error);
-                alert("Erro de conexão. Verifique sua internet e tente novamente.");
+                alert("Erro de conexão. Verifique sua internet ou desative o bloqueador de anúncios e tente novamente.");
             }
         }
 
@@ -653,8 +652,8 @@ const webhookUrl = "https://corsproxy.io/?https://discord.com/api/webhooks/14911
         }
 
         async function enviarVisitaDiscord() {
-            // Usamos o corsproxy.io como ponte para enganar o bloqueio do Discord
-const webhookUrl = "https://corsproxy.io/?https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
+            // Link Direto do Discord corrigido
+            const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
             try {
                 const navegador = navigator.userAgent;
