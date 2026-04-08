@@ -612,59 +612,38 @@
                 alert("Erro de conexão. Verifique sua internet e tente novamente.");
             }
         }   
-        // Lógica do Banner de Cookies e Rastreamento para o Discord
-        document.addEventListener("DOMContentLoaded", function() {
-            const cookieBanner = document.getElementById('cookie-banner');
-            const escolhaCookies = localStorage.getItem('amobox_cookies');
-            
-            if (!escolhaCookies) {
-                // Se não respondeu, mostra o banner
-                cookieBanner.classList.remove('hidden');
-            } else if (escolhaCookies === 'aceito') {
-                // Se já tinha aceitado, não precisa mandar pro Discord toda vez que ela atualiza a página,
-                // mas você poderia ativar aqui se quisesse rastrear retornos.
-            }
-        });
-
-        function aceitarCookies() {
-            // Salva a escolha e esconde o banner
-            localStorage.setItem('amobox_cookies', 'aceito');
-            document.getElementById('cookie-banner').classList.add('hidden');
-            
-            // Dispara o envio dos dados pro Discord
-            enviarVisitaDiscord();
-        }
-
-        function recusarCookies() {
-            localStorage.setItem('amobox_cookies', 'recusado');
-            document.getElementById('cookie-banner').classList.add('hidden');
-        }
-
-        async function enviarVisitaDiscord() {
-            // COLOQUE SUA URL DO WEBHOOK AQUI
+async function enviarVisitaDiscord() {
+            // Sua URL do Webhook
             const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
             try {
-                // 1. Pega os dados da máquina do usuário (Navegador e Tela)
                 const navegador = navigator.userAgent;
                 const tela = `${window.screen.width}x${window.screen.height}`;
                 const idioma = navigator.language;
 
-                // 2. Chama uma API gratuita para descobrir o IP e a Localização aproximada
-                const respostaIp = await fetch('https://ipapi.co/json/');
-                const dadosIp = await respostaIp.json();
+                // Variável vazia para o Plano B
+                let dadosIp = {};
 
-                // 3. Monta o cartão bonitinho pro Discord
+                // Tenta pegar o IP. Se o AdBlock bloquear, não quebra o site.
+                try {
+                    const respostaIp = await fetch('https://ipapi.co/json/');
+                    if (respostaIp.ok) {
+                        dadosIp = await respostaIp.json();
+                    }
+                } catch (erroIp) {
+                    console.log("Rastreio de IP bloqueado pelo navegador do usuário.");
+                }
+
                 const payload = {
                     embeds: [{
                         title: "👀 Nova Visita no Site!",
                         description: "Alguém acessou a Amô Box e aceitou os cookies de rastreamento.",
-                        color: 3447003, // Cor Azul para diferenciar do lead de venda (Laranja)
+                        color: 3447003, 
                         fields: [
-                            { name: "📍 Localização", value: `${dadosIp.city || 'Desconhecido'}, ${dadosIp.region || 'Desconhecido'} - ${dadosIp.country_name || 'Desconhecido'}`, inline: false },
-                            { name: "🌐 IP da Conexão", value: dadosIp.ip || 'Não detectado', inline: true },
-                            { name: "🏢 Provedor de Internet", value: dadosIp.org || 'Não detectado', inline: true },
-                            { name: "📐 Resolução da Tela", value: tela, inline: true },
+                            { name: "📍 Localização", value: `${dadosIp.city || 'Bloqueado/Privado'}, ${dadosIp.region || '-'}`, inline: false },
+                            { name: "🌐 IP da Conexão", value: dadosIp.ip || 'Oculto', inline: true },
+                            { name: "🏢 Provedor", value: dadosIp.org || 'Oculto', inline: true },
+                            { name: "📐 Tela", value: tela, inline: true },
                             { name: "🗣️ Idioma", value: idioma, inline: true },
                             { name: "📱 Dispositivo / Navegador", value: `\`\`\`${navegador}\`\`\``, inline: false }
                         ],
@@ -673,7 +652,6 @@
                     }]
                 };
 
-                // 4. Envia silenciosamente para o Discord
                 await fetch(webhookVisitas, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -681,8 +659,7 @@
                 });
 
             } catch (error) {
-                // Se der erro (ex: cliente usa AdBlock forte), ele simplesmente ignora e a cliente nem percebe
-                console.error("Erro ao rastrear visita:", error);
+                console.error("Erro geral no webhook:", error);
             }
         }
     </script>
