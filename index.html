@@ -367,7 +367,7 @@
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <input type="tel" id="q-whatsapp" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="WhatsApp (com DDD)">
-                            <input type="number" id="q-idade" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Idade">
+                            <input type="number" id="q-idade" required min="1" oninput="this.value = Math.abs(this.value)" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Idade">
                         </div>
                         <div>
                             <select id="q-genero" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
@@ -548,7 +548,7 @@
         });
 
         // ---------------------------------------------------
-        // 4. LÓGICA DO QUIZ E DISCORD
+        // 4. LÓGICA DO QUIZ E DISCORD (MANTIDO)
         // ---------------------------------------------------
         function abrirQuiz() { 
             document.getElementById('quiz-modal').classList.remove('hidden'); 
@@ -629,7 +629,7 @@
         }
 
         // ---------------------------------------------------
-        // 5. LÓGICA DE COOKIES E VISITAS (DISCORD)
+        // 5. LÓGICA DE COOKIES (SEM RASTREIO NO DISCORD)
         // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
             const cookieBanner = document.getElementById('cookie-banner');
@@ -643,61 +643,12 @@
         function aceitarCookies() {
             localStorage.setItem('amobox_cookies', 'aceito');
             document.getElementById('cookie-banner').classList.add('hidden');
-            enviarVisitaDiscord();
+            // Apenas fecha o banner, sem enviar nada pro Discord!
         }
 
         function recusarCookies() {
             localStorage.setItem('amobox_cookies', 'recusado');
             document.getElementById('cookie-banner').classList.add('hidden');
-        }
-
-        async function enviarVisitaDiscord() {
-            // Link Direto do Discord corrigido
-            const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
-
-            try {
-                const navegador = navigator.userAgent;
-                const tela = `${window.screen.width}x${window.screen.height}`;
-                const idioma = navigator.language;
-
-                let dadosIp = {};
-
-                try {
-                    const respostaIp = await fetch('https://ipapi.co/json/');
-                    if (respostaIp.ok) {
-                        dadosIp = await respostaIp.json();
-                    }
-                } catch (erroIp) {
-                    console.log("Rastreio de IP bloqueado pelo navegador do usuário.");
-                }
-
-                const payload = {
-                    embeds: [{
-                        title: "👀 Nova Visita no Site!",
-                        description: "Alguém acessou a Amô Box e aceitou os cookies de rastreamento.",
-                        color: 3447003, 
-                        fields: [
-                            { name: "📍 Localização", value: `${dadosIp.city || 'Bloqueado/Privado'}, ${dadosIp.region || '-'}`, inline: false },
-                            { name: "🌐 IP da Conexão", value: dadosIp.ip || 'Oculto', inline: true },
-                            { name: "🏢 Provedor", value: dadosIp.org || 'Oculto', inline: true },
-                            { name: "📐 Tela", value: tela, inline: true },
-                            { name: "🗣️ Idioma", value: idioma, inline: true },
-                            { name: "📱 Dispositivo / Navegador", value: `\`\`\`${navegador}\`\`\``, inline: false }
-                        ],
-                        footer: { text: "Monitoramento Amô Box" },
-                        timestamp: new Date().toISOString()
-                    }]
-                };
-
-                await fetch(webhookVisitas, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-            } catch (error) {
-                console.error("Erro geral no webhook:", error);
-            }
         }
     </script>
 </body>
