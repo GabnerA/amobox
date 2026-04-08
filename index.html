@@ -540,7 +540,7 @@
             document.getElementById('success-modal').classList.add('hidden'); 
         }
 
-        // 3. Função para enviar ao Discord
+        // 3. Função para enviar formulário ao Discord
         async function enviarQuiz(event) {
             event.preventDefault(); 
             
@@ -556,7 +556,6 @@
             const transicao = document.querySelector('input[name="transicao"]:checked').value;
             const calor = document.querySelector('input[name="calor"]:checked').value;
 
-            // COLOQUE SUA URL DO WEBHOOK DO DISCORD AQUI
             const webhookUrl = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
             const payload = {
@@ -592,13 +591,9 @@
                 });
 
                 if (response.ok) {
-                    fecharQuiz(); // Fecha o formulário
-                    
-                    // Mostra o nome da pessoa na tela de sucesso
+                    fecharQuiz(); 
                     document.getElementById('success-nome').textContent = nome.split(' ')[0];
                     document.getElementById('success-modal').classList.remove('hidden');
-                    
-                    // Limpa o formulário
                     document.getElementById('form-quiz').reset();
                 } else {
                     alert("Ops! Houve um problema ao enviar. Tente novamente ou nos chame no WhatsApp.");
@@ -611,9 +606,30 @@
                 console.error("Erro ao enviar:", error);
                 alert("Erro de conexão. Verifique sua internet e tente novamente.");
             }
-        }   
-async function enviarVisitaDiscord() {
-            // Sua URL do Webhook
+        }
+
+        // 4. Lógica do Banner de Cookies e Rastreamento para o Discord
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const escolhaCookies = localStorage.getItem('amobox_cookies');
+            
+            if (!escolhaCookies) {
+                cookieBanner.classList.remove('hidden');
+            }
+        });
+
+        function aceitarCookies() {
+            localStorage.setItem('amobox_cookies', 'aceito');
+            document.getElementById('cookie-banner').classList.add('hidden');
+            enviarVisitaDiscord();
+        }
+
+        function recusarCookies() {
+            localStorage.setItem('amobox_cookies', 'recusado');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        async function enviarVisitaDiscord() {
             const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
             try {
@@ -621,7 +637,6 @@ async function enviarVisitaDiscord() {
                 const tela = `${window.screen.width}x${window.screen.height}`;
                 const idioma = navigator.language;
 
-                // Variável vazia para o Plano B
                 let dadosIp = {};
 
                 // Tenta pegar o IP. Se o AdBlock bloquear, não quebra o site.
