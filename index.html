@@ -74,6 +74,16 @@
             color: #000;
             font-weight: 700;
         }
+/* Animação da Esteira Infinita de Produtos */
+        @keyframes scroll-esteira {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+        .animacao-esteira {
+            display: flex;
+            width: max-content;
+            animation: scroll-esteira 50s linear infinite; /* Aumentado para 50s */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -96,8 +106,41 @@
         </div>
     </header>
 
-    <section id="home" class="bg-yellow-brand py-16 px-6 overflow-hidden">
-        <div class="container mx-auto flex flex-col md:flex-row items-center">
+<section id="home" class="bg-yellow-brand pt-16 pb-24 md:pb-32 px-6 overflow-hidden relative min-h-[80vh] flex items-center">
+        
+        <div class="absolute top-1/2 left-0 w-full overflow-hidden z-0 opacity-40 pointer-events-none transform -translate-y-1/2">
+            <div class="animacao-esteira flex">
+                
+                <div class="flex gap-24 md:gap-40 pr-24 md:pr-40 items-center min-w-max">
+                    <img src="https://dmvfarma.vtexassets.com/arquivos/ids/272551-800-auto?v=638842146552170000&width=800&height=auto&aspect=true" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 1">
+                    <img src="https://images.tcdn.com.br/img/img_prod/926373/siage_eudora_shampoo_cica_therapy_250ml_7319_1_66bb7b8174fe6a06e9ab769ca56ab963.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 2">
+                    <img src="https://naturabrasil.fr/cdn/shop/files/image-guide-natura_ab9b1ee9-3afc-474c-80cc-d814a0f51c2a.png?v=1745548025&width=500" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 3">
+                    <img src="https://ikesaki.vteximg.com.br/arquivos/ids/269362/Creme-de-Tratamento-Beleza-Natural-Cachos-Intensos-500g-7898236080322.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 4">
+                    <img src="https://starcosmeticos.com.br/wp-content/uploads/2024/11/Design-sem-nome-2024-11-30T155511.026.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 5">
+                    <img src="https://www.alfaparfmilanopro.com/sites/default/files/media-image-p/SEMI_DI_LINO_2023_Smooth_Oil_PF020609_01.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 6">
+                    <img src="https://www.greycematias.com.br/wp-content/uploads/2019/08/produtos-1a796aa810255c8964d6dc3b5cc9f485.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 7">
+                    <img src="https://res.cloudinary.com/beleza-na-web/image/upload/w_1500,f_auto,fl_progressive,q_auto:best/v1/imagens/product/54655/1319fd64-1fe1-4f17-b27e-eff82cfbe3fa-kerasys-repairing-shampoo-180ml.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 8">
+                    <img src="https://assets.unileversolutions.com/v1/137270079.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 9">
+                    <img src="https://inoar.com/wp-content/uploads/2023/11/7908124407633_FRONT-2.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 10">
+                </div>
+
+                <div class="flex gap-24 md:gap-40 pr-24 md:pr-40 items-center min-w-max">
+                    <img src="https://dmvfarma.vtexassets.com/arquivos/ids/272551-800-auto?v=638842146552170000&width=800&height=auto&aspect=true" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 1">
+                    <img src="https://images.tcdn.com.br/img/img_prod/926373/siage_eudora_shampoo_cica_therapy_250ml_7319_1_66bb7b8174fe6a06e9ab769ca56ab963.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 2">
+                    <img src="https://naturabrasil.fr/cdn/shop/files/image-guide-natura_ab9b1ee9-3afc-474c-80cc-d814a0f51c2a.png?v=1745548025&width=500" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 3">
+                    <img src="https://ikesaki.vteximg.com.br/arquivos/ids/269362/Creme-de-Tratamento-Beleza-Natural-Cachos-Intensos-500g-7898236080322.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 4">
+                    <img src="https://starcosmeticos.com.br/wp-content/uploads/2024/11/Design-sem-nome-2024-11-30T155511.026.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 5">
+                    <img src="https://www.alfaparfmilanopro.com/sites/default/files/media-image-p/SEMI_DI_LINO_2023_Smooth_Oil_PF020609_01.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 6">
+                    <img src="https://www.greycematias.com.br/wp-content/uploads/2019/08/produtos-1a796aa810255c8964d6dc3b5cc9f485.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 7">
+                    <img src="https://res.cloudinary.com/beleza-na-web/image/upload/w_1500,f_auto,fl_progressive,q_auto:best/v1/imagens/product/54655/1319fd64-1fe1-4f17-b27e-eff82cfbe3fa-kerasys-repairing-shampoo-180ml.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 8">
+                    <img src="https://assets.unileversolutions.com/v1/137270079.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 9">
+                    <img src="https://inoar.com/wp-content/uploads/2023/11/7908124407633_FRONT-2.png" class="h-48 md:h-72 lg:h-96 w-auto object-contain mix-blend-multiply" alt="Produto 10">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container mx-auto flex flex-col md:flex-row items-center relative z-10 w-full">
             <div class="md:w-1/2 mb-10">
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 hide-reveal">
                     O cuidado certo para <span class="text-white">todas as fases</span> do seu fio.
@@ -115,9 +158,9 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="experiencia" class="py-20 bg-white border-b overflow-hidden">
+    </section>  
+         
+          <section id="experiencia" class="py-20 bg-white border-b overflow-hidden">
         <div class="text-center mb-12 hide-reveal">
             <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-widest">A Experiência Amô Box</h2>
         </div>
