@@ -27,54 +27,103 @@
             padding-bottom: 10px;
         }
         .brands-container::-webkit-scrollbar { display: none; }
+
+        /* Animações de Scroll (Surgimento de baixo para cima) */
+        .hide-reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .show-reveal {
+            opacity: 1 !important;
+            transform: translateY(0) !important; 
+        }
+
+        /* Efeito de "escadinha" */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Animação específica do Cabeçalho (Vem de cima para baixo) */
+        .header-reveal {
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        /* Estilo do menu ativo (Traço preto embaixo) */
+        .nav-link { 
+            position: relative; 
+            padding-bottom: 4px; 
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s ease;
+        }
+        /* Quando a classe active-link for adicionada, o traço cresce */
+        .nav-link.active-link::after {
+            width: 100%;
+        }
+        .nav-link.active-link {
+            color: #000;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white shadow-sm sticky top-0 z-50 header-reveal" id="main-header">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-orange-brand tracking-tighter">
                 AMÔ<span class="text-yellow-500">BOX</span>
             </div>
-            <nav class="hidden md:flex space-x-6 font-medium text-gray-600 text-sm">
-                <a href="#home" class="hover:text-orange-brand uppercase">Início</a>
-                <a href="#sobre" class="hover:text-orange-brand uppercase">Quem Somos</a>
-                <a href="#como-funciona" class="hover:text-orange-brand uppercase">Como Funciona</a>
-                <a href="#marcas" class="hover:text-orange-brand uppercase">Marcas</a>
-                <a href="#planos" class="hover:text-orange-brand uppercase">Planos</a>
+            <nav class="hidden md:flex space-x-6 font-medium text-gray-600 text-sm hide-reveal delay-100" id="nav-menu">
+                <a href="#home" class="nav-link hover:text-orange-brand uppercase transition-colors">Início</a>
+                <a href="#sobre" class="nav-link hover:text-orange-brand uppercase transition-colors">Quem Somos</a>
+                <a href="#como-funciona" class="nav-link hover:text-orange-brand uppercase transition-colors">Como Funciona</a>
+                <a href="#marcas" class="nav-link hover:text-orange-brand uppercase transition-colors">Marcas</a>
+                <a href="#planos" class="nav-link hover:text-orange-brand uppercase transition-colors">Planos</a>
             </nav>
-                <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Assine Já</button>        </div>
+            <div class="hide-reveal delay-200" id="nav-btn">
+                <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition hover:shadow-lg hover:-translate-y-0.5">Assine Já</button>
+            </div>
+        </div>
     </header>
 
-    <section id="home" class="bg-yellow-brand py-16 px-6">
+    <section id="home" class="bg-yellow-brand py-16 px-6 overflow-hidden">
         <div class="container mx-auto flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 hide-reveal">
                     O cuidado certo para <span class="text-white">todas as fases</span> do seu fio.
                 </h1>
-                <p class="text-lg text-gray-800 mb-8 font-medium">
+                <p class="text-lg text-gray-800 mb-8 font-medium hide-reveal delay-100">
                     Da vitalidade da juventude à elegância dos cabelos maduros. Nossa curadoria seleciona o que há de melhor para você.
                 </p>
-                <a href="#planos" class="inline-block bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">Ver Planos</a>
+                <div class="hide-reveal delay-200">
+                    <a href="#planos" class="inline-block bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">Ver Planos</a>
+                </div>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full overflow-hidden border-8 border-orange-200">
+                <div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full overflow-hidden border-8 border-orange-200 hide-reveal delay-300 shadow-xl">
                     <img src="https://production.na01.natura.com/on/demandware.static/-/Sites-NatBrazil-Library/default/dw197472bb/Blogs/2026/Cabelo/corte-cabelo-feminino/blog-corte-cabelo-feminino-miolo1.jpg" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-   <section id="experiencia" class="py-20 bg-white border-b">
-        <div class="text-center mb-12">
+    <section id="experiencia" class="py-20 bg-white border-b overflow-hidden">
+        <div class="text-center mb-12 hide-reveal">
             <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-widest">A Experiência Amô Box</h2>
         </div>
-
-        <div class="relative max-w-5xl mx-auto px-12">
-            
+        <div class="relative max-w-5xl mx-auto px-12 hide-reveal delay-100">
             <div class="overflow-hidden w-full rounded-2xl">
                 <div class="flex transition-transform duration-500 ease-in-out" id="slider">
-                    
                     <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
                         <div class="md:w-1/2 flex justify-center md:justify-end">
                             <img src="https://static.vecteezy.com/ti/fotos-gratis/p2/1226522-mulher-abertura-caixa-de-papelao-no-sofa-gratis-foto.jpg" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
@@ -84,7 +133,6 @@
                             <p class="text-gray-600 text-lg font-medium max-w-md">Não enviamos apenas produtos. Enviamos uma solução baseada na saúde atual do seu fio, testada por especialistas.</p>
                         </div>
                     </div>
-
                     <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
                         <div class="md:w-1/2 flex justify-center md:justify-end">
                             <img src="https://www.loreal-paris.com.br/-/media/project/loreal/brand-sites/oap/americas/br/artigos/cabelo/artigos-planilha-nova-1_1/imagens-centralizadas-3386/4629-a-4689/4630-voce-sabia-que-cabelo-branco-pode-surgir-apos-um-choque-emocional.jpg" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
@@ -94,7 +142,6 @@
                             <p class="text-gray-600 text-lg font-medium max-w-md">Cuidado especial para fios que precisam de mais hidratação e reposição de massa. Dignidade e brilho para sua maturidade.</p>
                         </div>
                     </div>
-
                     <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
                         <div class="md:w-1/2 flex justify-center md:justify-end">
                             <img src="https://img.cdndsgni.com/preview/10225122.jpg" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
@@ -104,19 +151,17 @@
                             <p class="text-gray-600 text-lg font-medium max-w-md">Todo mês, você recebe um guia de como e quando usar cada item. Transformamos sua casa em um SPA capilar.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
-            
             <button onclick="moveSlide(-1)" class="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❮</button>
             <button onclick="moveSlide(1)" class="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❯</button>
         </div>
     </section>
 
-    <section id="sobre" class="py-20 bg-white">
+    <section id="sobre" class="py-20 bg-white overflow-hidden">
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="flex flex-col md:flex-row gap-12 items-center mb-16">
-                <div class="md:w-1/2">
+                <div class="md:w-1/2 hide-reveal">
                     <h2 class="text-4xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Quem Somos</h2>
                     <p class="text-gray-700 text-lg leading-relaxed mb-6">
                         A <span class="font-bold text-orange-brand">Amô Box</span> nasceu para ser a ponte entre a dúvida e o resultado. Através de uma análise cuidadosa das necessidades individuais — feita por meio do nosso formulário de diagnóstico — selecionamos produtos de forma inteligente e personalizada. Não entregamos apenas itens sortidos; entregamos a resposta para o que o seu cabelo precisa hoje, respeitando seu ritmo e seu bolso. 
@@ -125,24 +170,23 @@
                         Combinamos tecnologia de análise digital com a expertise de profissionais para entregar na sua casa não apenas produtos, mas o conhecimento necessário para você dominar sua rotina de cuidados.
                     </p>
                 </div>
-                    <div class="md:w-1/2 grid grid-cols-2 gap-3 md:gap-4">
-                    <div class="h-32 md:h-40 bg-yellow-400 rounded-2xl p-4 md:p-6 flex items-end font-bold text-lg sm:text-xl md:text-2xl uppercase italic">Confiança</div>
-                    <div class="h-32 md:h-40 bg-orange-500 rounded-2xl p-4 md:p-6 flex items-end font-bold text-lg sm:text-xl md:text-2xl uppercase italic text-white">Carinho</div>
-                    <div class="h-32 md:h-40 bg-purple-600 rounded-2xl p-4 md:p-6 flex items-end font-bold text-lg sm:text-xl md:text-2xl uppercase italic text-white">Expertise</div>
-                    <div class="h-32 md:h-40 bg-black rounded-2xl p-4 md:p-6 flex items-end font-bold text-lg sm:text-xl md:text-2xl uppercase italic text-white">Beleza</div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-3 md:gap-4 w-full">
+                    <div class="hide-reveal delay-100 h-28 sm:h-32 md:h-40 bg-yellow-400 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic tracking-tight">Confiança</div>
+                    <div class="hide-reveal delay-200 h-28 sm:h-32 md:h-40 bg-orange-500 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Carinho</div>
+                    <div class="hide-reveal delay-200 h-28 sm:h-32 md:h-40 bg-purple-600 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Expertise</div>
+                    <div class="hide-reveal delay-300 h-28 sm:h-32 md:h-40 bg-black rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Beleza</div>
                 </div>
             </div>
-
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="border-l-4 border-yellow-500 pl-6 py-4">
+                <div class="hide-reveal border-l-4 border-yellow-500 pl-6 py-4">
                     <h3 class="text-xl font-bold mb-3 uppercase">Missão</h3>
                     <p class="text-gray-600">Democratizar o acesso a produtos profissionais e educar cada cliente sobre a saúde do seu próprio cabelo.</p>
                 </div>
-                <div class="border-l-4 border-orange-500 pl-6 py-4">
+                <div class="hide-reveal delay-100 border-l-4 border-orange-500 pl-6 py-4">
                     <h3 class="text-xl font-bold mb-3 uppercase">Visão</h3>
                     <p class="text-gray-600">Ser a maior referência em curadoria capilar do Brasil, unindo praticidade e resultados reais de salão.</p>
                 </div>
-                <div class="border-l-4 border-purple-500 pl-6 py-4">
+                <div class="hide-reveal delay-200 border-l-4 border-purple-500 pl-6 py-4">
                     <h3 class="text-xl font-bold mb-3 uppercase">Valores</h3>
                     <p class="text-gray-600">Transparência, respeito à diversidade dos fios, ética profissional e compromisso com a autoestima feminina.</p>
                 </div>
@@ -150,61 +194,59 @@
         </div>
     </section>
 
-    <section id="como-funciona" class="py-20 bg-gray-50 border-y">
+    <section id="como-funciona" class="py-20 bg-gray-50 border-y overflow-hidden">
         <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-16">Como Funciona</h2>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="bg-yellow-500 rounded-3xl p-10 shadow-xl"><div class="passo-numero text-6xl font-black mb-4">1.</div><h3 class="text-2xl font-bold mb-4">Escolha seu plano</h3><p class="font-medium">Selecione a assinatura que melhor cabe na sua rotina.</p></div>
-                <div class="bg-orange-brand rounded-3xl p-10 text-white shadow-xl"><div class="passo-numero text-6xl font-black mb-4">2.</div><h3 class="text-2xl font-bold mb-4">Preencha seu perfil</h3><p class="opacity-90 font-medium">Nossa análise identifica o que seu cabelo realmente precisa.</p></div>
-                <div class="bg-purple-500 rounded-3xl p-10 text-white shadow-xl"><div class="passo-numero text-6xl font-black mb-4">3.</div><h3 class="text-2xl font-bold mb-4">Receba sua Box</h3><p class="opacity-90 font-medium">Todo mês, benefícios exclusivos e cronograma completo na sua porta.</p></div>
+            <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-16 hide-reveal">Como Funciona</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center mt-12">
+                <div class="bg-yellow-500 rounded-3xl p-10 shadow-xl hide-reveal delay-100">
+                    <div class="passo-numero text-6xl font-black mb-4">1.</div>
+                    <h3 class="text-2xl font-bold mb-4">Escolha seu plano</h3>
+                    <p class="font-medium">Selecione a assinatura que melhor cabe na sua rotina.</p>
+                </div>
+                <div class="bg-orange-brand rounded-3xl p-10 text-white shadow-xl hide-reveal delay-200">
+                    <div class="passo-numero text-6xl font-black mb-4">2.</div>
+                    <h3 class="text-2xl font-bold mb-4">Preencha seu perfil</h3>
+                    <p class="opacity-90 font-medium">Nossa análise identifica o que seu cabelo realmente precisa.</p>
+                </div>
+                <div class="bg-purple-500 rounded-3xl p-10 text-white shadow-xl hide-reveal delay-300">
+                    <div class="passo-numero text-6xl font-black mb-4">3.</div>
+                    <h3 class="text-2xl font-bold mb-4">Receba sua Box</h3>
+                    <p class="opacity-90 font-medium">Todo mês, benefícios exclusivos e cronograma completo na sua porta.</p>
+                </div>
             </div>
         </div>
     </section>
 
-<section id="marcas" class="py-16 bg-white overflow-hidden">
+    <section id="marcas" class="py-16 bg-white overflow-hidden">
         <div class="container mx-auto px-6 relative">
-            <h2 class="text-center text-xl font-bold text-gray-800 mb-10 uppercase tracking-widest">Marcas parceiras</h2>
-            
-            <div class="relative flex items-center max-w-6xl mx-auto">
-                <button onclick="scrollBrands(-400)" class="absolute -left-4 md:-left-8 z-10 bg-white p-3 rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 transition">❮</button>
-                
-<div id="brands-list" class="brands-container flex gap-8 px-4 py-6 w-full">
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">EUDORA</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">O Boticário</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">WELLA</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">BN CACHOS</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">SALOON LINE</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">KÉRASYS</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">INOAR</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">LOLA</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">PANTENTE</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">DOVE</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">widi CARE</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Amend</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Apice</div>
-    
-    <div class="min-w-[220px] h-24 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 font-bold uppercase tracking-wider shadow-sm hover:shadow-lg hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">MUITO +</div>
-</div>
-                <button onclick="scrollBrands(400)" class="absolute -right-4 md:-right-8 z-10 bg-white p-3 rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 transition">❯</button>
+            <h2 class="text-center text-xl font-bold text-gray-800 mb-10 uppercase tracking-widest hide-reveal">Marcas Parceiras</h2>
+            <div class="relative flex items-center max-w-6xl mx-auto hide-reveal delay-100">
+                <button onclick="scrollBrands(-400)" class="absolute -left-2 md:-left-6 z-10 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-md border border-gray-100 text-orange-brand hover:scale-110 hover:shadow-lg transition font-bold text-lg">❮</button>
+                <div id="brands-list" class="brands-container flex gap-6 px-4 py-6 w-full">
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Eudora</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">O Boticário</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Wella</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">BN Cachos</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Salon Line</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Kérasys</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Inoar</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Lola</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Pantene</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Dove</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Widi Care</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Amend</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Ápice</div>
+                    <div class="min-w-[180px] h-16 bg-white border border-gray-100 rounded-xl flex items-center justify-center text-gray-500 font-bold text-sm uppercase tracking-wider shadow-sm hover:shadow-md hover:-translate-y-1 hover:text-orange-brand hover:border-orange-200 transition-all duration-300 cursor-pointer">Muito +</div>
+                </div>
+                <button onclick="scrollBrands(400)" class="absolute -right-2 md:-right-6 z-10 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-md border border-gray-100 text-orange-brand hover:scale-110 hover:shadow-lg transition font-bold text-lg">❯</button>
             </div>
         </div>
     </section>
-    <section id="planos" class="py-20 bg-gray-100 px-6">
+
+    <section id="planos" class="py-20 bg-gray-100 px-6 overflow-hidden">
         <div class="container mx-auto">
             <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="card-plan text-white rounded-3xl overflow-hidden shadow-2xl">
+                <div class="card-plan hide-reveal text-white rounded-3xl overflow-hidden shadow-2xl">
                     <div class="bg-yellow-500 h-4 w-full"></div>
                     <div class="p-8 flex flex-col justify-between h-full">
                         <div>
@@ -218,10 +260,10 @@
                                 <li>✦ Cancele quando quiser</li>
                             </ul>
                         </div>
-                        <a href="#" class="mt-10 block bg-yellow-500 text-black text-center py-3 rounded-full font-bold">Assinar</a>
+                        <button onclick="abrirQuiz('Amô Essencial')" class="w-full mt-10 block bg-yellow-500 text-black text-center py-3 rounded-full font-bold hover:bg-yellow-400 transition">Assinar</button>
                     </div>
                 </div>
-                <div class="card-plan text-white rounded-3xl overflow-hidden shadow-2xl border-2 border-orange-brand">
+                <div class="card-plan hide-reveal delay-100 text-white rounded-3xl overflow-hidden shadow-2xl border-2 border-orange-brand">
                     <div class="bg-orange-brand h-4 w-full"></div>
                     <div class="p-8 flex flex-col justify-between h-full">
                         <div>
@@ -235,10 +277,10 @@
                                 <li>✦ Cronograma personalizado</li>
                             </ul>
                         </div>
-                        <a href="#" class="mt-10 block bg-orange-brand text-white text-center py-3 rounded-full font-bold">Assinar</a>
+                        <button onclick="abrirQuiz('Amô Premium')" class="w-full mt-10 block bg-orange-brand text-white text-center py-3 rounded-full font-bold hover:bg-orange-500 transition">Assinar</button>
                     </div>
                 </div>
-                <div class="card-plan text-white rounded-3xl overflow-hidden shadow-2xl">
+                <div class="card-plan hide-reveal delay-200 text-white rounded-3xl overflow-hidden shadow-2xl">
                     <div class="bg-purple-500 h-4 w-full"></div>
                     <div class="p-8 flex flex-col justify-between h-full">
                         <div>
@@ -252,17 +294,16 @@
                                 <li>✦ Análise profunda do couro cabeludo</li>
                             </ul>
                         </div>
-                        <a href="#" class="mt-10 block bg-purple-500 text-black text-center py-3 rounded-full font-bold">Assinar</a>
+                        <button onclick="abrirQuiz('Amô Profissional')" class="w-full mt-10 block bg-purple-500 text-black text-center py-3 rounded-full font-bold hover:bg-purple-400 transition">Assinar</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-<section id="faq" class="py-20 bg-white border-t">
+    <section id="faq" class="py-20 bg-white border-t">
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-12">Dúvidas Frequentes</h2>
-
             <div class="space-y-2">
                 <div class="border-b border-gray-200">
                     <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
@@ -275,7 +316,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="border-b border-gray-200">
                     <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
                         2. Quais formas de pagamento são aceitas?
@@ -287,7 +327,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="border-b border-gray-200">
                     <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
                         3. Posso cancelar minha assinatura quando quiser?
@@ -299,7 +338,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="border-b border-gray-200">
                     <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
                         4. Qual é o prazo de entrega da Box?
@@ -311,7 +349,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="border-b border-gray-200">
                     <button class="faq-button w-full text-left flex justify-between items-center py-5 font-bold text-lg text-gray-800 hover:text-orange-brand transition-colors">
                         5. E se algum produto vier com defeito ou vazando?
@@ -339,32 +376,35 @@
             </div>
             <div class="bg-gray-800 p-8 rounded-xl text-center">
                 <h3 class="text-2xl font-bold mb-4 text-yellow-brand uppercase">Converse com uma Consultora</h3>
-                    <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Falar com Consultora</button>            </div>
+                <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition">Falar com Consultora</button>            
+            </div>
         </div>
     </section>
 
-<div id="quiz-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
+    <div id="quiz-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
         <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
-            
             <button onclick="fecharQuiz()" class="absolute top-4 right-4 text-white hover:text-gray-200 font-bold text-2xl transition z-10">×</button>
-            
             <div class="bg-orange-brand p-6 text-white text-center shrink-0">
                 <h3 class="text-2xl font-bold uppercase tracking-wide">Seu Perfil Capilar</h3>
                 <p class="text-sm opacity-90 mt-1">Preencha rapidinho para a nossa curadoria te conhecer!</p>
             </div>
-
             <form id="form-quiz" onsubmit="enviarQuiz(event)" class="p-6 overflow-y-auto space-y-4">
                 
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
+                    <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">Plano de Interesse</label>
+                    <select id="q-plano" class="w-full bg-white border border-gray-300 p-3 rounded-lg font-bold text-orange-brand focus:outline-none text-sm">
+                        <option value="Ainda não escolhi">Quero ajuda para escolher</option>
+                        <option value="Amô Essencial">Amô Essencial (R$ 34,99)</option>
+                        <option value="Amô Premium">Amô Premium (R$ 49,99)</option>
+                        <option value="Amô Profissional">Amô Profissional (R$ 79,99)</option>
+                    </select>
+                </div>
+
                 <div class="border-b pb-4 mb-4">
                     <h4 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-widest">1. Seus Dados</h4>
-                    
                     <div class="space-y-3">
-                        <div>
-                            <input type="text" id="q-nome" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu nome completo">
-                        </div>
-                        <div>
-                            <input type="email" id="q-email" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu melhor e-mail">
-                        </div>
+                        <div><input type="text" id="q-nome" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu nome completo"></div>
+                        <div><input type="email" id="q-email" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu melhor e-mail"></div>
                         <div class="grid grid-cols-2 gap-3">
                             <input type="tel" id="q-whatsapp" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="WhatsApp (com DDD)">
                             <input type="number" id="q-idade" required min="1" oninput="this.value = Math.abs(this.value)" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Idade">
@@ -379,10 +419,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <h4 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-widest">2. Sobre o seu cabelo</h4>
-                    
                     <div class="space-y-3">
                         <select id="q-tipo" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
                             <option value="" disabled selected>Tipo de curvatura...</option>
@@ -391,7 +429,6 @@
                             <option value="Cacheado (3A a 3C)">Cacheado (3A a 3C)</option>
                             <option value="Crespo (4A a 4C)">Crespo (4A a 4C)</option>
                         </select>
-
                         <select id="q-couro" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
                             <option value="" disabled selected>Saúde do couro cabeludo...</option>
                             <option value="Normal/Saudável">Normal e saudável</option>
@@ -399,7 +436,6 @@
                             <option value="Seco ou sensível">Seco ou sensível</option>
                             <option value="Com caspa/descamação">Com caspa/descamação</option>
                         </select>
-
                         <select id="q-objetivo" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm font-bold text-orange-brand">
                             <option value="" disabled selected>Qual seu MAIOR objetivo hoje?</option>
                             <option value="Hidratação e Brilho">Hidratação e Brilho extremo</option>
@@ -408,7 +444,6 @@
                             <option value="Controle de Frizz e Volume">Controle de Frizz e Volume</option>
                             <option value="Definição de Cachos">Definição de Cachos</option>
                         </select>
-
                         <div class="grid grid-cols-2 gap-4 pt-2">
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 mb-1">Possui Química?</label>
@@ -434,7 +469,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="pt-4 pb-2">
                     <button type="submit" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl text-lg hover:bg-green-600 transition shadow-lg flex justify-center items-center">
                         Concluir e Enviar Perfil
@@ -457,15 +491,17 @@
             </button>
         </div>
     </div>
-<footer class="py-10 text-center text-gray-500 text-sm bg-gray-50 border-t">
-    <p class="mb-2">&copy; 2026 Amô Box - Especialistas em Curadoria Capilar.</p>
-    <div class="flex justify-center gap-4 text-xs font-medium">
-        <a href="termos.html" class="hover:text-orange-brand transition">Termos de Uso</a>
-        <span>|</span>
-        <a href="termos.html" class="hover:text-orange-brand transition">Políticas de Privacidade</a>
-    </div>
-</footer>
-<div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-white p-6 rounded-3xl shadow-2xl z-[120] border border-gray-100 hidden transition-opacity duration-500">
+
+    <footer class="py-10 text-center text-gray-500 text-sm bg-gray-50 border-t">
+        <p class="mb-2">&copy; 2026 Amô Box - Especialistas em Curadoria Capilar.</p>
+        <div class="flex justify-center gap-4 text-xs font-medium">
+            <a href="termos.html" class="hover:text-orange-brand transition">Termos de Uso</a>
+            <span>|</span>
+            <a href="termos.html" class="hover:text-orange-brand transition">Políticas de Privacidade</a>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-white p-6 rounded-3xl shadow-2xl z-[120] border border-gray-100 hidden transition-opacity duration-500">
         <div class="flex items-start gap-4">
             <div class="text-4xl drop-shadow-sm">🍪</div>
             <div>
@@ -480,25 +516,21 @@
             </div>
         </div>
     </div>
-<script>
-        // ---------------------------------------------------
+
+    <script>
         // 1. LÓGICA DO SLIDER DE EXPERIÊNCIA
-        // ---------------------------------------------------
         let currentSlide = 0;
         const slides = document.querySelectorAll('#slider > div'); 
         
         function moveSlide(direction) {
             if (slides.length === 0) return; 
-            
             currentSlide += direction;
             if (currentSlide < 0) currentSlide = slides.length - 1;
             if (currentSlide >= slides.length) currentSlide = 0;
             document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}%)`;
         }
 
-        // ---------------------------------------------------
         // 2. LÓGICA DO CARROSSEL DE MARCAS
-        // ---------------------------------------------------
         function scrollBrands(val) {
             const container = document.getElementById('brands-list');
             const startPosition = container.scrollLeft;
@@ -508,10 +540,8 @@
             function animation(currentTime) {
                 if (startTime === null) startTime = currentTime;
                 const timeElapsed = currentTime - startTime;
-                
                 const progress = Math.min(timeElapsed / duration, 1);
                 const ease = 1 - Math.pow(1 - progress, 3);
-                
                 container.scrollLeft = startPosition + (val * ease);
 
                 if (timeElapsed < duration) {
@@ -521,11 +551,8 @@
             window.requestAnimationFrame(animation);
         }
 
-        // ---------------------------------------------------
         // 3. LÓGICA DO FAQ (ACORDEÃO)
-        // ---------------------------------------------------
         const faqButtons = document.querySelectorAll('.faq-button');
-        
         faqButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const answer = button.nextElementSibling;
@@ -547,22 +574,22 @@
             });
         });
 
-        // ---------------------------------------------------
         // 4. LÓGICA DO QUIZ E DISCORD
-        // ---------------------------------------------------
-        function abrirQuiz() { 
+        // Agora a função recebe qual plano a pessoa clicou!
+        function abrirQuiz(planoSelecionado = 'Ainda não escolhi') { 
+            const campoPlano = document.getElementById('q-plano');
+            if (campoPlano) {
+                campoPlano.value = planoSelecionado;
+            }
             document.getElementById('quiz-modal').classList.remove('hidden'); 
         }
-        function fecharQuiz() { 
-            document.getElementById('quiz-modal').classList.add('hidden'); 
-        }
-        function fecharSucesso() { 
-            document.getElementById('success-modal').classList.add('hidden'); 
-        }
+        function fecharQuiz() { document.getElementById('quiz-modal').classList.add('hidden'); }
+        function fecharSucesso() { document.getElementById('success-modal').classList.add('hidden'); }
 
         async function enviarQuiz(event) {
             event.preventDefault(); 
             
+            const plano = document.getElementById('q-plano').value;
             const nome = document.getElementById('q-nome').value;
             const email = document.getElementById('q-email').value;
             const whatsapp = document.getElementById('q-whatsapp').value;
@@ -575,7 +602,6 @@
             const transicao = document.querySelector('input[name="transicao"]:checked').value;
             const calor = document.querySelector('input[name="calor"]:checked').value;
 
-            // Link Direto do Discord
             const webhookUrl = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
 
             const payload = {
@@ -584,6 +610,7 @@
                     description: "Temos um novo perfil capilar pronto para curadoria.",
                     color: 16747520, 
                     fields: [
+                        { name: "📦 Plano de Interesse", value: `**${plano}**`, inline: false },
                         { name: "👤 Cliente", value: `**Nome:** ${nome}\n**Idade:** ${idade} anos\n**Gênero:** ${genero}`, inline: false },
                         { name: "📞 Contato", value: `**WhatsApp:** ${whatsapp}\n**E-mail:** ${email}`, inline: false },
                         { name: "🎯 Objetivo Principal", value: `> ${objetivo}`, inline: false },
@@ -628,13 +655,10 @@
             }
         }
 
-        // ---------------------------------------------------
-        // 5. LÓGICA DE COOKIES E VISITAS (DISCORD)
-        // ---------------------------------------------------
+        // 5. LÓGICA DE COOKIES (SEM RASTREIO NO DISCORD)
         document.addEventListener("DOMContentLoaded", function() {
             const cookieBanner = document.getElementById('cookie-banner');
             const escolhaCookies = localStorage.getItem('amobox_cookies');
-            
             if (!escolhaCookies) {
                 cookieBanner.classList.remove('hidden');
             }
@@ -643,7 +667,6 @@
         function aceitarCookies() {
             localStorage.setItem('amobox_cookies', 'aceito');
             document.getElementById('cookie-banner').classList.add('hidden');
-            enviarVisitaDiscord();
         }
 
         function recusarCookies() {
@@ -651,54 +674,58 @@
             document.getElementById('cookie-banner').classList.add('hidden');
         }
 
-        async function enviarVisitaDiscord() {
-            // Link Direto do Discord corrigido
-            const webhookVisitas = "https://discord.com/api/webhooks/1491194434929299608/KoJXZg-Xenl87m2hvE9p3lMwLROBoSo5hJrInOhkyLf1TQz-s-cGPwohUL7_1LzG1tbN";
-
-            try {
-                const navegador = navigator.userAgent;
-                const tela = `${window.screen.width}x${window.screen.height}`;
-                const idioma = navigator.language;
-
-                let dadosIp = {};
-
-                try {
-                    const respostaIp = await fetch('https://ipapi.co/json/');
-                    if (respostaIp.ok) {
-                        dadosIp = await respostaIp.json();
+        // 6. LÓGICA DE ANIMAÇÃO NO SCROLL (REVEAL) E HEADER
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-reveal');
+                        observer.unobserve(entry.target); 
                     }
-                } catch (erroIp) {
-                    console.log("Rastreio de IP bloqueado pelo navegador do usuário.");
-                }
-
-                const payload = {
-                    embeds: [{
-                        title: "👀 Nova Visita no Site!",
-                        description: "Alguém acessou a Amô Box e aceitou os cookies de rastreamento.",
-                        color: 3447003, 
-                        fields: [
-                            { name: "📍 Localização", value: `${dadosIp.city || 'Bloqueado/Privado'}, ${dadosIp.region || '-'}`, inline: false },
-                            { name: "🌐 IP da Conexão", value: dadosIp.ip || 'Oculto', inline: true },
-                            { name: "🏢 Provedor", value: dadosIp.org || 'Oculto', inline: true },
-                            { name: "📐 Tela", value: tela, inline: true },
-                            { name: "🗣️ Idioma", value: idioma, inline: true },
-                            { name: "📱 Dispositivo / Navegador", value: `\`\`\`${navegador}\`\`\``, inline: false }
-                        ],
-                        footer: { text: "Monitoramento Amô Box" },
-                        timestamp: new Date().toISOString()
-                    }]
-                };
-
-                await fetch(webhookVisitas, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
                 });
+            }, { threshold: 0.15 });
 
-            } catch (error) {
-                console.error("Erro geral no webhook:", error);
-            }
-        }
+            const hiddenElements = document.querySelectorAll('.hide-reveal');
+            hiddenElements.forEach((el) => observer.observe(el));
+
+            setTimeout(() => {
+                const header = document.getElementById('main-header');
+                if(header) header.classList.add('show-reveal');
+                const navMenu = document.getElementById('nav-menu');
+                const navBtn = document.getElementById('nav-btn');
+                if(navMenu) navMenu.classList.add('show-reveal');
+                if(navBtn) navBtn.classList.add('show-reveal');
+            }, 100);
+        });
+
+        // 7. LÓGICA DO MENU ATIVO (SCROLL SPY)
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "-20% 0px -60% 0px", 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute("id");
+                        if (!id) return;
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                        
+                        if (activeLink) {
+                            navLinks.forEach((link) => link.classList.remove("active-link"));
+                            activeLink.classList.add("active-link");
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach((section) => observer.observe(section));
+        });
     </script>
 </body>
 </html>
