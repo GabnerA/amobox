@@ -58,22 +58,6 @@
             transform: translateY(-100%);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-
-        /* Estilo do menu ativo (Traço preto embaixo) */
-        .nav-link { 
-            position: relative; 
-            padding-bottom: 4px; 
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #000;
-            transition: width 0.3s ease;
-        }
         /* Quando a classe active-link for adicionada, o traço cresce */
         .nav-link.active-link::after {
             width: 100%;
@@ -91,6 +75,34 @@
             display: flex;
             width: max-content;
             animation: scroll-esteira 50s linear infinite; /* Aumentado para 50s */
+        }
+        /* Efeito do traço animado no Menu (ScrollSpy) */
+        .nav-link {
+            position: relative;
+            padding-bottom: 6px; /* Espaço entre a palavra e o traço */
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #f97316, #eab308); /* Gradiente Laranja para Amarelo */
+            transition: width 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        /* O que acontece quando passa o mouse OU quando a seção está ativa na tela */
+        .nav-link:hover::after,
+        .nav-link.active-link::after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active-link {
+            color: #f97316; /* A palavra fica laranja */
         }
     </style>
 </head>
@@ -952,35 +964,39 @@ async function enviarQuiz(event) {
             }, 100);
         });
 
-        // ---------------------------------------------------
-        // 7. LÓGICA DO MENU ATIVO (SCROLL SPY)
+// ---------------------------------------------------
+        // LÓGICA DO TRAÇO ATIVO NO MENU (SCROLLSPY)
         // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".nav-link");
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
 
-            const observerOptions = {
-                root: null,
-                rootMargin: "-20% 0px -60% 0px", 
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute("id");
-                        if (!id) return;
-                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                        
-                        if (activeLink) {
-                            navLinks.forEach((link) => link.classList.remove("active-link"));
-                            activeLink.classList.add("active-link");
-                        }
+            function atualizarTracoMenu() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    // O traço muda um pouco antes da seção chegar no topo da tela
+                    if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
                     }
                 });
-            }, observerOptions);
 
-            sections.forEach((section) => observer.observe(section));
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    // Se o link do menu bater com a seção atual, ele acende!
+                    if (current && link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+
+            // Fica de olho toda vez que a pessoa rolar a página
+            window.addEventListener('scroll', atualizarTracoMenu);
+            // Executa uma vez logo que abre o site para acender o "Início"
+            atualizarTracoMenu();
         });
     </script>
 </body>
