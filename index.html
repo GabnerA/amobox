@@ -135,7 +135,7 @@
             </button>
         </div>
 
-        <div id="menu-mobile" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-2xl">
+       <div id="menu-mobile" class="hidden md:hidden bg-white border-t border-gray-100 absolute top-full left-0 w-full shadow-2xl">
             <div class="flex flex-col px-6 py-6 space-y-5 font-semibold text-gray-600 text-center">
                 <a href="#home" class="hover:text-orange-500 text-lg">Início</a>
                 <a href="#sobre" class="hover:text-orange-500 text-lg">Quem Somos</a>
@@ -252,7 +252,7 @@
 
                     <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
                         <div class="md:w-1/2 flex justify-center md:justify-end">
-                            <img src="https://capricho.abril.com.br/wp-content/uploads/2023/11/como-finalizar-cabelo-cacheado.jpg?quality=85&strip=info&resize=1080,565&crop=1">
+                            <img src="https://capricho.abril.com.br/wp-content/uploads/2023/11/como-finalizar-cabelo-cacheado.jpg?quality=85&strip=info&resize=1080,565&crop=1" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
                         </div>
                         <div class="md:w-1/2 text-center md:text-left">
                             <h3 class="text-3xl font-bold text-purple-600 mb-4">Muito Além dos Cosméticos</h3>
@@ -997,6 +997,28 @@ async function enviarQuiz(event) {
             window.addEventListener('scroll', atualizarTracoMenu);
             // Executa uma vez logo que abre o site para acender o "Início"
             atualizarTracoMenu();
+        });
+    // ---------------------------------------------------
+        // LÓGICA DO MENU DE CELULAR (HAMBURGUER)
+        // ---------------------------------------------------
+        document.addEventListener("DOMContentLoaded", function() {
+            const btnMobile = document.getElementById('btn-mobile');
+            const menuMobile = document.getElementById('menu-mobile');
+
+            if(btnMobile && menuMobile) {
+                // Abre e fecha ao clicar no ícone
+                btnMobile.addEventListener('click', () => {
+                    menuMobile.classList.toggle('hidden');
+                });
+
+                // Fecha o menu automaticamente quando a pessoa clica em algum link
+                const linksMobile = menuMobile.querySelectorAll('a, button');
+                linksMobile.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuMobile.classList.add('hidden');
+                    });
+                });
+            }
         });
     </script>
 </body>
