@@ -118,8 +118,8 @@
             <nav class="hidden md:flex space-x-8 font-semibold text-gray-600">
                 <a href="#home" class="nav-link transition-colors">Início</a>
                 <a href="#experiencia" class="nav-link transition-colors">A Experiência</a>
-                <a href="#sobre" class="nav-link transition-colors">Quem Somos</a>
                 <a href="#planos" class="nav-link transition-colors">Planos</a>
+                <a href="#sobre" class="nav-link transition-colors">Quem Somos</a>                
             </nav>
 
             <div class="hidden md:block">
@@ -139,8 +139,8 @@
             <div class="flex flex-col px-6 py-6 space-y-5 font-semibold text-gray-600 text-center">
                 <a href="#home" class="hover:text-orange-500 text-lg">Início</a>
                 <a href="#experiencia" class="hover:text-orange-500 text-lg">A Experiência</a>
-                <a href="#sobre" class="hover:text-orange-500 text-lg">Quem Somos</a>
                 <a href="#planos" class="hover:text-orange-500 text-lg">Planos</a>
+                <a href="#sobre" class="hover:text-orange-500 text-lg">Quem Somos</a>                
                 <button onclick="abrirQuiz('Ainda não escolhi')" class="bg-orange-500 text-white px-6 py-3.5 rounded-full font-bold mx-auto w-full max-w-xs mt-4 shadow-lg">
                     Assine Já
                 </button>
@@ -264,41 +264,6 @@
             </div>
             <button onclick="moveSlide(-1)" class="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❮</button>
             <button onclick="moveSlide(1)" class="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❯</button>
-        </div>
-    </section>
-    <section id="sobre" class="py-20 bg-white overflow-hidden">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="flex flex-col md:flex-row gap-12 items-center mb-16">
-                <div class="md:w-1/2 hide-reveal">
-                    <h2 class="text-4xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Quem Somos</h2>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                        A <span class="font-bold text-orange-brand">Amô Box</span> nasceu para ser a ponte entre a dúvida e o resultado. Através de uma análise cuidadosa das necessidades individuais — feita por meio do nosso formulário de diagnóstico — selecionamos produtos de forma inteligente e personalizada. Não entregamos apenas itens sortidos; entregamos a resposta para o que o seu cabelo precisa hoje, respeitando seu ritmo e seu bolso. 
-                    </p>
-                    <p class="text-gray-700 text-lg leading-relaxed">
-                        Combinamos tecnologia de análise digital com a expertise de profissionais para entregar na sua casa não apenas produtos, mas o conhecimento necessário para você dominar sua rotina de cuidados.
-                    </p>
-                </div>
-                <div class="md:w-1/2 grid grid-cols-2 gap-3 md:gap-4 w-full">
-                    <div class="hide-reveal delay-100 h-28 sm:h-32 md:h-40 bg-yellow-400 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic tracking-tight">Confiança</div>
-                    <div class="hide-reveal delay-200 h-28 sm:h-32 md:h-40 bg-orange-500 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Carinho</div>
-                    <div class="hide-reveal delay-200 h-28 sm:h-32 md:h-40 bg-purple-600 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Expertise</div>
-                    <div class="hide-reveal delay-300 h-28 sm:h-32 md:h-40 bg-black rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Beleza</div>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="hide-reveal border-l-4 border-yellow-500 pl-6 py-4">
-                    <h3 class="text-xl font-bold mb-3 uppercase">Missão</h3>
-                    <p class="text-gray-600">Democratizar o acesso a produtos profissionais e educar cada cliente sobre a saúde do seu próprio cabelo.</p>
-                </div>
-                <div class="hide-reveal delay-100 border-l-4 border-orange-500 pl-6 py-4">
-                    <h3 class="text-xl font-bold mb-3 uppercase">Visão</h3>
-                    <p class="text-gray-600">Ser a maior referência em curadoria capilar do Brasil, unindo praticidade e resultados reais de salão.</p>
-                </div>
-                <div class="hide-reveal delay-200 border-l-4 border-purple-500 pl-6 py-4">
-                    <h3 class="text-xl font-bold mb-3 uppercase">Valores</h3>
-                    <p class="text-gray-600">Transparência, respeito à diversidade dos fios, ética profissional e compromisso com a autoestima feminina.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -426,6 +391,41 @@
                         </div>
                         <button onclick="abrirQuiz('Amô Profissional')" class="w-full mt-10 block bg-purple-500 text-black text-center py-3 rounded-full font-bold hover:bg-purple-400 transition">Assinar</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="sobre" class="py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col md:flex-row gap-12 items-center mb-16">
+                <div class="md:w-1/2 hide-reveal">
+                    <h2 class="text-4xl font-black text-gray-900 mb-6 uppercase tracking-tighter">Quem Somos</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        A <span class="font-bold text-orange-brand">Amô Box</span> nasceu para ser a ponte entre a dúvida e o resultado. Através de uma análise cuidadosa das necessidades individuais — feita por meio do nosso formulário de diagnóstico — selecionamos produtos de forma inteligente e personalizada. Não entregamos apenas itens sortidos; entregamos a resposta para o que o seu cabelo precisa hoje, respeitando seu ritmo e seu bolso. 
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Combinamos tecnologia de análise digital com a expertise de profissionais para entregar na sua casa não apenas produtos, mas o conhecimento necessário para você dominar sua rotina de cuidados.
+                    </p>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-3 md:gap-4 w-full">
+                    <div class="hide-reveal delay-100 h-28 sm:h-32 md:h-40 bg-yellow-400 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic tracking-tight">Confiança</div>
+                    <div class="hide-reveal delay-200 h-28 sm:h-32 md:h-40 bg-orange-500 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Carinho</div>
+                    <div class="hide-reveal delay-200 h-28 sm:h-32 md:h-40 bg-purple-600 rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Expertise</div>
+                    <div class="hide-reveal delay-300 h-28 sm:h-32 md:h-40 bg-black rounded-2xl p-2 sm:p-4 md:p-6 flex items-end font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase italic text-white tracking-tight">Beleza</div>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="hide-reveal border-l-4 border-yellow-500 pl-6 py-4">
+                    <h3 class="text-xl font-bold mb-3 uppercase">Missão</h3>
+                    <p class="text-gray-600">Democratizar o acesso a produtos profissionais e educar cada cliente sobre a saúde do seu próprio cabelo.</p>
+                </div>
+                <div class="hide-reveal delay-100 border-l-4 border-orange-500 pl-6 py-4">
+                    <h3 class="text-xl font-bold mb-3 uppercase">Visão</h3>
+                    <p class="text-gray-600">Ser a maior referência em curadoria capilar do Brasil, unindo praticidade e resultados reais de salão.</p>
+                </div>
+                <div class="hide-reveal delay-200 border-l-4 border-purple-500 pl-6 py-4">
+                    <h3 class="text-xl font-bold mb-3 uppercase">Valores</h3>
+                    <p class="text-gray-600">Transparência, respeito à diversidade dos fios, ética profissional e compromisso com a autoestima feminina.</p>
                 </div>
             </div>
         </div>
