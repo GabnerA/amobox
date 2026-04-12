@@ -10,7 +10,7 @@
 
     <meta property="og:title" content="Amô Box | Curadoria Capilar Profissional">
     <meta property="og:description" content="O cuidado certo para todas as fases do seu fio. Faça seu diagnóstico online e receba uma curadoria feita por especialistas na sua casa.">
-    <meta property="og:image" content="https://images.vexels.com/media/users/3/275056/isolated/preview/dd165725027a9db421c162ff338b8bc2-coracao-amarelo-semi-plano.png">
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSurnZSVltY-0VITcBl3DkRhjvEB5J7SRVMpA&s">
     <meta property="og:url" content="https://amobox.vercel.app/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#FF8C00"> 
@@ -58,12 +58,42 @@
             transform: translateY(-100%);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        /* Quando a classe active-link for adicionada, o traço cresce */
-        .nav-link.active-link::after {
+
+/* --------------------------------------------------- */
+        /* Estilo do menu (Traço com Degradê no Hover e Ativo) */
+        /* --------------------------------------------------- */
+        .nav-link { 
+            position: relative; 
+            padding-bottom: 4px; 
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            /* Aqui está a mágica: O traço em degradê laranja pro amarelo! */
+            background-image: linear-gradient(to right, #f97316, #facc15); 
+            transition: width 0.3s ease;
+        }
+
+        /* O traço cresce para 100% tanto no menu ativo quanto ao passar o mouse */
+        .nav-link.active-link::after,
+        .nav-link:hover::after {
             width: 100%;
         }
+
+        /* A cor do texto fica laranja ao passar o mouse e quando ativo */
+        .nav-link.active-link,
+        .nav-link:hover {
+            color: #f97316; 
+        }
+
+        /* O texto só fica em negrito se for a página ativa (evita o texto "pular" no hover) */
         .nav-link.active-link {
-            color: #000;
             font-weight: 700;
         }
 /* Animação da Esteira Infinita de Produtos */
@@ -76,75 +106,187 @@
             width: max-content;
             animation: scroll-esteira 50s linear infinite; /* Aumentado para 50s */
         }
-        /* Efeito do traço animado no Menu (ScrollSpy) */
-        .nav-link {
-            position: relative;
-            padding-bottom: 6px; /* Espaço entre a palavra e o traço */
-        }
+/* --------------------------------------------------- */
+        /* ANIMAÇÃO DOS RELATOS (ESTEIRA LONGA SEM BURACOS) */
+        /* --------------------------------------------------- */
         
+        .balao-chat {
+            background-color: #f472b6; 
+            color: white;
+            font-size: 0.875rem; 
+            line-height: 1.5;
+            padding: 1rem 1.5rem;
+            width: 320px; 
+            flex-shrink: 0; /* GARANTE QUE NÃO VÃO ENCOLHER EM TELAS MENORES */
+            white-space: normal; 
+            border-radius: 1.5rem; 
+            border-bottom-left-radius: 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .balao-chat:hover {
+            transform: scale(1.15); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        @keyframes scroll-chat-perfect {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        .animacao-chat-1, .animacao-chat-2 {
+            display: flex;
+            width: max-content;
+        }
+
+        .animacao-chat-1 { animation: scroll-chat-perfect 40s linear infinite; }
+        .animacao-chat-2 { animation: scroll-chat-perfect 50s linear infinite; }
+
+        .animacao-chat-1:hover, .animacao-chat-2:hover { 
+            animation-play-state: paused; 
+        }
+
+/* Emojis consertados para NÃO vazarem da seção! */
+        @keyframes flutuar-emoji {
+            0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(-500px) scale(1.3) rotate(20deg); opacity: 0; }
+        }
+
+        .emoji-flutuante {
+            position: absolute;
+            bottom: 0; /* Agora nascem exatamente na linha de base da seção */
+            animation-name: flutuar-emoji;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            z-index: 0;
+        }
+/* --------------------------------------------------- */
+        /* HOVER REFINADO NOS PLANOS (BRILHO FINO E SOMBRA) */
+        /* --------------------------------------------------- */
+        .card-plan {
+            background-color: #121212;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-plan:hover {
+            transform: translateY(-8px); /* Dá uma leve levantada */
+        }
+
+        /* Essencial: Sombra escura embaixo + Brilho fino amarelo ao redor */
+        .card-plan-essencial:hover { 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 15px 2px rgba(255, 215, 0, 0.4); 
+        }
+
+        /* Premium: Sombra escura embaixo + Brilho fino laranja ao redor */
+        .card-plan-premium:hover { 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 15px 2px rgba(255, 140, 0, 0.4); 
+        }
+
+        /* Profissional: Sombra escura embaixo + Brilho fino roxo ao redor */
+        .card-plan-profissional:hover { 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 15px 2px rgba(147, 51, 234, 0.4); 
+        }
+
+/* Estilo do menu ativo (Traço e cor Laranja) */
+        .nav-link { 
+            position: relative; 
+            padding-bottom: 4px; 
+        }
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 3px;
+            height: 2px;
             bottom: 0;
             left: 0;
-            background: linear-gradient(to right, #f97316, #eab308); /* Gradiente Laranja para Amarelo */
-            transition: width 0.3s ease-in-out;
-            border-radius: 2px;
+            background-color: #FF8C00; /* Mudou de #000 (preto) para Laranja */
+            transition: width 0.3s ease;
         }
-
-        /* O que acontece quando passa o mouse OU quando a seção está ativa na tela */
-        .nav-link:hover::after,
+        /* Quando a classe active-link for adicionada, o traço cresce */
         .nav-link.active-link::after {
             width: 100%;
         }
-
-        .nav-link:hover,
         .nav-link.active-link {
-            color: #f97316; /* A palavra fica laranja */
+            color: #FF8C00; /* Mudou de #000 (preto) para Laranja */
+            font-weight: 700;
         }
-    </style>
+/* --------------------------------------------------- */
+        /* EFEITOS REFINADOS NO RODAPÉ (SEM TRANSFORMAÇÃO)     */
+        /* --------------------------------------------------- */
+        
+        /* 1. Efeito de Brilho Embaixo nos Ícones das Redes Sociais */
+        .social-icon-wrapper {
+            transition: all 0.3s ease;
+            color: #1a1a1a; /* Cor neutra escura */
+        }
+
+        .social-icon-wrapper:hover {
+            /* Sem zoom ou levantada, apenas troca de cor e brilho */
+            color: #f97316; /* orange-brand */
+            /* Brilho amarelo/ouro refinado APENAS embaixo da forma do ícone */
+            filter: drop-shadow(0 6px 6px rgba(251, 191, 36, 1)); 
+        }
+
+/* 2. Efeito de Crescimento nos Links de Texto (Footer) */
+        .footer-link {
+            transition: transform 0.2s ease-in-out, color 0.2s ease;
+            text-decoration: none;
+            color: #374151; /* Cor cinza elegante original */
+            transform-origin: left center; /* Garante que o texto cresça para a direita, sem empurrar o layout para o lado */
+            display: inline-block; /* Necessário para o efeito de crescimento (scale) funcionar na letra */
+        }
+
+        .footer-link:hover {
+            transform: scale(1.05); /* Faz a letra crescer levemente (5%) */
+            color: #000000; /* Fica levemente mais escura para dar destaque */
+        }
+     </style>
+
 </head>
 <body class="bg-gray-50">
 
-   <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+<header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center max-w-7xl relative">
             
-            <a href="#home" class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 hover:scale-105 transition-transform duration-300">
+            <a href="#home" class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 hover:scale-105 transition-transform duration-300 z-50">
                 AMÔBOX
             </a>
-
-            <nav class="hidden md:flex space-x-8 font-semibold text-gray-600">
-                <a href="#home" class="nav-link transition-colors">Início</a>
-                <a href="#experiencia" class="nav-link transition-colors">A Experiência</a>
-                <a href="#planos" class="nav-link transition-colors">Planos</a>
-                <a href="#sobre" class="nav-link transition-colors">Quem Somos</a>                
+            
+            <nav class="hidden md:flex space-x-14 font-semibold text-gray-600 text-sm" id="nav-menu">
+                <a href="#home" class="nav-link hover:text-orange-500 transition-colors">Início</a>
+                <a href="#como-funciona" class="nav-link hover:text-orange-500 transition-colors">Como Funciona</a>
+                <a href="#marcas" class="nav-link hover:text-orange-500 transition-colors">Marcas</a>
+                <a href="#planos" class="nav-link hover:text-orange-500 transition-colors">Planos</a>
+                <a href="#sobre" class="nav-link hover:text-orange-500 transition-colors">Quem Somos</a>
             </nav>
-
-            <div class="hidden md:block">
-                <button onclick="abrirQuiz('Ainda não escolhi')" class="bg-orange-500 text-white px-8 py-2.5 rounded-full font-bold hover:bg-orange-600 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
-                    Assine Já
-                </button>
+            
+            <div id="nav-btn" class="hidden md:block">
+                <button onclick="abrirQuiz()" class="bg-orange-brand text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition hover:shadow-lg hover:-translate-y-0.5">Assine Já</button>
             </div>
 
-            <button id="btn-mobile" class="md:hidden text-gray-600 hover:text-orange-500 focus:outline-none">
+            <button id="btn-mobile" class="md:hidden text-orange-brand hover:text-orange-600 focus:outline-none z-50">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
 
-        <div id="menu-mobile" class="hidden md:hidden bg-white border-t border-gray-100 absolute top-full left-0 w-full shadow-2xl">
-            <div class="flex flex-col px-6 py-6 space-y-5 font-semibold text-gray-600 text-center">
-                <a href="#home" class="hover:text-orange-500 text-lg">Início</a>
-                <a href="#experiencia" class="hover:text-orange-500 text-lg">A Experiência</a>
-                <a href="#planos" class="hover:text-orange-500 text-lg">Planos</a>
-                <a href="#sobre" class="hover:text-orange-500 text-lg">Quem Somos</a>                
-                <button onclick="abrirQuiz('Ainda não escolhi')" class="bg-orange-500 text-white px-6 py-3.5 rounded-full font-bold mx-auto w-full max-w-xs mt-4 shadow-lg">
-                    Assine Já
-                </button>
-            </div>
+        <div id="menu-mobile" class="hidden absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 py-8 px-6 flex-col space-y-6 text-center md:hidden">
+            <a href="#home" class="block text-lg font-semibold text-gray-600 hover:text-orange-500">Início</a>
+            <a href="#como-funciona" class="block text-lg font-semibold text-gray-600 hover:text-orange-500">Como Funciona</a>
+            <a href="#marcas" class="block text-lg font-semibold text-gray-600 hover:text-orange-500">Marcas</a>
+            <a href="#planos" class="block text-lg font-semibold text-gray-600 hover:text-orange-500">Planos</a>
+            <a href="#sobre" class="block text-lg font-semibold text-gray-600 hover:text-orange-500">Quem Somos</a>
+            
+            <button onclick="abrirQuiz(); document.getElementById('menu-mobile').classList.add('hidden')" class="w-full bg-orange-brand text-white px-6 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition shadow-lg mt-4">Assine Já</button>
         </div>
     </header>
 
@@ -250,16 +392,6 @@
                         </div>
                     </div>
 
-                    <div class="w-full flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-10 px-4">
-                        <div class="md:w-1/2 flex justify-center md:justify-end">
-                            <img src="https://capricho.abril.com.br/wp-content/uploads/2023/11/como-finalizar-cabelo-cacheado.jpg?quality=85&strip=info&resize=1080,565&crop=1" class="rounded-2xl shadow-xl w-full max-w-sm object-cover aspect-video">
-                        </div>
-                        <div class="md:w-1/2 text-center md:text-left">
-                            <h3 class="text-3xl font-bold text-purple-600 mb-4">Muito Além dos Cosméticos</h3>
-                            <p class="text-gray-600 text-lg font-medium max-w-md">Para facilitar o seu dia a dia, também enviamos acessórios incríveis! Você pode ser surpreendida com mimos como escovas, presilhas elegantes, toucas ou fronhas de cetim para proteger seus fios com todo o carinho.</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <button onclick="moveSlide(-1)" class="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-gray-100 text-orange-brand hover:scale-110 hover:bg-orange-50 transition z-10 text-xl font-bold">❮</button>
@@ -267,25 +399,31 @@
         </div>
     </section>
 
-    <section id="como-funciona" class="py-20 bg-gray-50 border-y overflow-hidden">
+<section id="como-funciona" class="py-20 bg-gray-50 border-y overflow-hidden">
         <div class="container mx-auto px-6 max-w-6xl">
             <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-16 hide-reveal">Como Funciona</h2>
-            <div class="grid md:grid-cols-3 gap-8 text-center mt-12">
-                <div class="bg-yellow-500 rounded-3xl p-10 shadow-xl hide-reveal delay-100">
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center mt-12 items-stretch">
+                
+                <div class="bg-yellow-500 rounded-3xl p-10 shadow-xl hide-reveal delay-100 flex flex-col h-full">
                     <div class="passo-numero text-6xl font-black mb-4">1.</div>
                     <h3 class="text-2xl font-bold mb-4">Escolha seu plano</h3>
-                    <p class="font-medium">Selecione a assinatura que melhor cabe na sua rotina.</p>
+                    
+                    <p class="font-medium flex-grow">Selecione a assinatura que melhor cabe na sua rotina.</p>
                 </div>
-                <div class="bg-orange-brand rounded-3xl p-10 text-white shadow-xl hide-reveal delay-200">
+                
+                <div class="bg-orange-brand rounded-3xl p-10 text-white shadow-xl hide-reveal delay-200 flex flex-col h-full">
                     <div class="passo-numero text-6xl font-black mb-4">2.</div>
                     <h3 class="text-2xl font-bold mb-4">Preencha seu perfil</h3>
-                    <p class="opacity-90 font-medium">Nossa análise identifica o que seu cabelo realmente precisa.</p>
+                    <p class="opacity-90 font-medium flex-grow">Nossa análise identifica o que seu cabelo realmente precisa.</p>
                 </div>
-                <div class="bg-purple-500 rounded-3xl p-10 text-white shadow-xl hide-reveal delay-300">
+                
+                <div class="bg-purple-500 rounded-3xl p-10 text-white shadow-xl hide-reveal delay-300 flex flex-col h-full">
                     <div class="passo-numero text-6xl font-black mb-4">3.</div>
                     <h3 class="text-2xl font-bold mb-4">Receba sua Box</h3>
-                    <p class="opacity-90 font-medium">Todo mês, produtos capilares e o cronograma completo na sua porta.</p>
+                    <p class="opacity-90 font-medium flex-grow">Todo mês, produtos para o seu cabelo e cronograma completo na sua porta.</p>
                 </div>
+
             </div>
         </div>
     </section>
@@ -316,57 +454,91 @@
         </div>
     </section>
 
-    <section id="planos" class="py-20 bg-gray-100 px-6 overflow-hidden">
+<section id="planos" class="relative py-20 bg-gray-100 px-6 overflow-hidden border-t">
         <div class="container mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="card-plan hide-reveal text-white rounded-3xl overflow-hidden shadow-2xl">
-                    <div class="bg-yellow-500 h-4 w-full"></div>
-                    <div class="p-8 flex flex-col justify-between h-full">
+            
+            <div class="text-center mb-14 hide-reveal">
+                <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-widest">Escolha seu Plano</h2>
+                <p class="text-gray-600 mt-2 font-medium">Encontre a assinatura perfeita para o momento do seu cabelo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+                
+                <div class="flex flex-col h-full card-plan card-plan-essencial text-white rounded-3xl overflow-hidden justify-between">
+                    <div class="bg-yellow-brand h-2 w-full"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <h3 class="text-2xl font-bold">Amô Essencial</h3>
-                            <p class="text-xl font-semibold mt-2 text-yellow-500">R$ 34,99/mês</p>
+                            <p class="text-xl font-semibold mt-2 text-yellow-400">R$ 34,99/mês</p>
                             <hr class="my-6 border-gray-800">
                             <ul class="space-y-4 text-sm text-gray-300 italic">
                                 <li>✦ Produtos para necessidade do seu cabelo</li>
                                 <li>✦ Análise capilar básica digital</li>
-                                <li>✦ Receba junto o seu Cronograma</li>
+                                
+                                <li class="flex items-center relative group cursor-help w-max">
+                                    <span class="mr-2">✦ Receba junto o seu Cronograma</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 hover:text-yellow-400 transition-colors">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                    </svg>
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 bg-gray-900 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
+                                        O guia completo de uso e aplicação dos produtos vem impresso e organizado diretamente na sua box.
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                                    </div>
+                                </li>
+                                
                                 <li>✦ Cancele quando quiser</li>
                             </ul>
                         </div>
-                        <button onclick="abrirQuiz('Amô Essencial')" class="w-full mt-10 block bg-yellow-500 text-black text-center py-3 rounded-full font-bold hover:bg-yellow-400 transition">Assinar</button>
+                        <div class="pt-10 text-center flex justify-center">
+                            <button onclick="abrirQuiz('Amô Essencial')" class="w-full bg-yellow-brand text-black py-3.5 rounded-full font-bold hover:bg-yellow-400 transition hover:shadow-lg hover:-translate-y-0.5 uppercase tracking-wider">Assinar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="card-plan hide-reveal delay-100 text-white rounded-3xl overflow-hidden shadow-2xl border-2 border-orange-brand">
-                    <div class="bg-orange-brand h-4 w-full"></div>
-                    <div class="p-8 flex flex-col justify-between h-full">
+                
+                <div class="flex flex-col h-full card-plan card-plan-premium text-white rounded-3xl overflow-hidden justify-between">
+                    <div class="bg-orange-brand h-2 w-full"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <h3 class="text-2xl font-bold">Amô Premium</h3>
                             <p class="text-xl font-semibold mt-2 text-orange-brand">R$ 49,99/mês</p>
                             <hr class="my-6 border-gray-800">
                             <ul class="space-y-4 text-sm text-gray-300 italic">
                                 <li>✦ Todos os benefícios anteriores</li>
-                                <li>✦ Lembrete no dia do tratamento</li>
                                 
-                                <li class="flex items-center relative group w-max cursor-help">
-                                    <span class="mr-2">✦ Análise da fibra por especialista</span>
+                                <li class="flex items-center relative group cursor-help w-max">
+                                    <span class="mr-2">✦ Lembrete no dia do tratamento</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 hover:text-orange-400 transition-colors">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                                     </svg>
-                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2.5 bg-gray-800 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
-                                        A amostra é coletada e enviada para laboratório.
-                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 bg-gray-900 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
+                                        Avisamos no seu WhatsApp o momento certo de cada etapa para garantir os melhores resultados.
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
                                     </div>
                                 </li>
+                                
+                                <li>✦ Análise da fibra por especialista</li>
 
-                                <li>✦ Cronograma personalizado</li>
+                                <li class="flex items-center relative group cursor-help w-max">
+                                    <span class="mr-2">✦ Cronograma personalizado</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 hover:text-orange-400 transition-colors">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                    </svg>
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 bg-gray-900 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
+                                        Personalizamos conforme a sua rotina para garantir que você consiga cuidar do seu cabelo.
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
-                        <button onclick="abrirQuiz('Amô Premium')" class="w-full mt-10 block bg-orange-brand text-white text-center py-3 rounded-full font-bold hover:bg-orange-500 transition">Assinar</button>
+                        <div class="pt-10 text-center flex justify-center">
+                            <button onclick="abrirQuiz('Amô Premium')" class="w-full bg-orange-brand text-white py-3.5 rounded-full font-bold hover:bg-orange-500 transition hover:shadow-lg hover:-translate-y-0.5 uppercase tracking-wider">Assinar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="card-plan hide-reveal delay-200 text-white rounded-3xl overflow-hidden shadow-2xl">
-                    <div class="bg-purple-500 h-4 w-full"></div>
-                    <div class="p-8 flex flex-col justify-between h-full">
+                
+                <div class="flex flex-col h-full card-plan card-plan-profissional text-white rounded-3xl overflow-hidden justify-between">
+                    <div class="bg-purple-600 h-2 w-full"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <h3 class="text-2xl font-bold">Amô Profissional</h3>
                             <p class="text-xl font-semibold mt-2 text-purple-400">R$ 79,99/mês</p>
@@ -374,28 +546,40 @@
                             <ul class="space-y-4 text-sm text-gray-300 italic">
                                 <li>✦ Foco em efeito salão em casa</li>
                                 <li>✦ Produtos profissionais exclusivos</li>
-                                <li>✦ Pré-cuidados para eventos/química</li>
                                 
-                                <li class="flex items-center relative group w-max cursor-help">
+                                <li class="flex items-center relative group cursor-help w-max">
+                                    <span class="mr-2">✦ Pré-cuidados para eventos/química</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 hover:text-purple-400 transition-colors">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                    </svg>
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 bg-gray-900 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
+                                        Nos avise a data que vai fazer a química ou evento, e nós prepararemos produtos específicos para a sua pré e pós química.
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                                    </div>
+                                </li>
+                                
+                                <li class="flex items-center relative group cursor-help w-max">
                                     <span class="mr-2">✦ Análise profunda do couro cabeludo</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 hover:text-purple-400 transition-colors">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                                     </svg>
-                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2.5 bg-gray-800 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-3 bg-gray-900 text-xs text-gray-200 text-center rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 shadow-2xl border border-gray-700 pointer-events-none not-italic font-sans">
                                         A amostra é coletada e enviada para laboratório.
-                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
                                     </div>
                                 </li>
-
                             </ul>
                         </div>
-                        <button onclick="abrirQuiz('Amô Profissional')" class="w-full mt-10 block bg-purple-500 text-black text-center py-3 rounded-full font-bold hover:bg-purple-400 transition">Assinar</button>
+                        <div class="pt-10 text-center flex justify-center">
+                            <button onclick="abrirQuiz('Amô Profissional')" class="w-full bg-purple-600 text-white py-3.5 rounded-full font-bold hover:bg-purple-500 transition hover:shadow-lg hover:-translate-y-0.5 uppercase tracking-wider">Assinar</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section id="sobre" class="py-20 bg-white overflow-hidden">
+
+
+    <section id="sobre" class="relative z-20 py-20 bg-white overflow-hidden shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="flex flex-col md:flex-row gap-12 items-center mb-16">
                 <div class="md:w-1/2 hide-reveal">
@@ -431,7 +615,7 @@
         </div>
     </section>
 
-    <section id="faq" class="py-20 bg-white border-t">
+    <section id="faq" class="relative z-20 py-20 bg-gray-50 border-t">
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-center text-3xl font-bold text-gray-900 uppercase tracking-widest mb-12">Dúvidas Frequentes</h2>
             <div class="space-y-2">
@@ -510,14 +694,78 @@
             </div>
         </div>
     </section>
+<footer class="bg-white py-6 px-6 border-t border-gray-100 mt-16">
+        <div class="container mx-auto max-w-6xl flex flex-col gap-4 text-sm">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-4">
+                
+                <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-center md:items-start text-center md:text-left">
+                    
+                    <a href="#home" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 uppercase tracking-tighter pr-4">
+                        AMÔ<br>BOX
+                    </a>
+                    
+                    <div class="flex flex-col gap-2 text-gray-700 font-medium items-center md:items-start">
+                        <a href="#faq" class="footer-link w-max">Dúvidas frequentes</a>
+                        <a href="termos.html" class="footer-link w-max">Termos de uso</a>
+                        <a href="termos.html" class="footer-link w-max">Política de privacidade</a>
+                    </div>
+                </div>
 
-    <div id="quiz-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
+                <div class="flex items-center">
+                    <a href="https://www.instagram.com/box.amo" target="_blank" class="social-icon-wrapper" title="Siga @box.amo no Instagram">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 border-t border-gray-100 pt-8 mt-4">
+                
+                <div class="text-xs text-gray-500 leading-relaxed text-center md:text-left pb-1">
+                    Amô Box Comércio de Cosméticos LTDA - CNPJ: 66.204.527/0001-46<br>
+                    Conjunto Residencial Araretama - Pindamonhangaba/SP - CEP: 12423-000
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-2">
+                    <span class="block text-xs font-bold text-gray-900 uppercase tracking-widest text-center">Certificados</span>
+                    
+                    <div class="flex gap-4 items-center">
+                        <a href="https://www.reclameaqui.com.br/amobox-empresa/" target="_blank" class="hover:opacity-80 transition-opacity">
+                            <div class="bg-white border-2 border-[#a4c936] rounded-lg p-2 flex flex-col items-center justify-center w-24 h-24 shadow-sm">
+                                <div class="w-10 h-10 bg-[#4aa530] rounded-full flex items-center justify-center text-white text-lg font-bold mb-1 shadow-inner">:)</div>
+                                <span class="text-[10px] font-bold text-gray-700 tracking-tight">ÓTIMO</span>
+                                <span class="text-[9px] font-black text-[#6bb931] tracking-tighter leading-none mt-1">ReclameAQUI</span>
+                            </div>
+                        </a>
+
+                        <div class="hover:opacity-80 transition-opacity cursor-pointer">
+                            <div class="bg-white rounded-lg p-2 flex flex-col items-center justify-center w-24 h-24 border border-gray-100 shadow-sm">
+                                <div class="w-12 h-12 border-[4px] border-t-gray-500 border-r-gray-500 border-b-green-500 border-l-green-500 rounded-full flex justify-center items-center relative">
+                                    <div class="flex gap-1 absolute mt-1.5">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-bold text-gray-600 mt-2">eu<span class="text-green-500">reciclo</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </footer><div id="quiz-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
         <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
+            
             <button onclick="fecharQuiz()" class="absolute top-4 right-4 text-white hover:text-gray-200 font-bold text-2xl transition z-10">×</button>
+            
             <div class="bg-orange-brand p-6 text-white text-center shrink-0">
                 <h3 class="text-2xl font-bold uppercase tracking-wide">Seu Perfil Capilar</h3>
                 <p class="text-sm opacity-90 mt-1">Preencha rapidinho para a nossa curadoria te conhecer!</p>
             </div>
+            
             <form id="form-quiz" onsubmit="enviarQuiz(event)" class="p-6 overflow-y-auto space-y-4">
                 
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
@@ -535,10 +783,19 @@
                     <div class="space-y-3">
                         <div><input type="text" id="q-nome" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu nome completo"></div>
                         <div><input type="email" id="q-email" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Seu melhor e-mail"></div>
+                        
                         <div class="grid grid-cols-2 gap-3">
-                            <input type="tel" id="q-whatsapp" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="WhatsApp (com DDD)">
+                            <div class="flex border border-gray-300 rounded-lg overflow-hidden focus-within:border-orange-brand bg-white">
+                                <div class="flex items-center px-3 bg-gray-100 border-r border-gray-200 gap-1 text-sm text-gray-600 font-medium">
+                                    <span class="text-lg leading-none">🇧🇷</span>
+                                    <span>+55</span>
+                                </div>
+                                <input type="tel" id="q-whatsapp" required maxlength="15" oninput="mascaraWhatsApp(this)" class="w-full p-3 focus:outline-none text-sm" placeholder="(11) 99999-9999">
+                            </div>
+                            
                             <input type="number" id="q-idade" required min="1" oninput="this.value = Math.abs(this.value)" class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand text-sm" placeholder="Idade">
                         </div>
+                        
                         <div>
                             <select id="q-genero" required class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:border-orange-brand bg-white text-sm text-gray-600">
                                 <option value="" disabled selected>Identidade de Gênero...</option>
@@ -549,6 +806,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div>
                     <h4 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-widest">2. Sobre o seu cabelo</h4>
                     <div class="space-y-3">
@@ -574,6 +832,7 @@
                             <option value="Controle de Frizz e Volume">Controle de Frizz e Volume</option>
                             <option value="Definição de Cachos">Definição de Cachos</option>
                         </select>
+                        
                         <div class="grid grid-cols-2 gap-4 pt-2">
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 mb-1">Possui Química?</label>
@@ -608,84 +867,6 @@
             </form>
         </div>
     </div>
-
-    <div id="success-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4">
-        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-8 text-center relative">
-            <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">
-                ✓
-            </div>
-            <h3 class="text-2xl font-black text-gray-900 mb-3 uppercase tracking-tighter">Prontinho, <br><span id="success-nome" class="text-orange-brand"></span>!</h3>
-            <p class="text-gray-600 mb-8 font-medium">Seu perfil foi enviado com sucesso para a nossa curadoria. Fique de olho, nossa especialista vai te chamar no WhatsApp muito em breve! 🧡</p>
-            <button onclick="fecharSucesso()" class="w-full bg-orange-brand text-white font-bold py-4 rounded-xl hover:bg-orange-600 transition shadow-lg uppercase tracking-wider">
-                Entendido
-            </button>
-        </div>
-    </div>
-
-<footer class="bg-white py-6 px-6 border-t border-gray-100 mt-16">
-        <div class="container mx-auto max-w-6xl flex flex-col gap-6 text-sm">
-            
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-6">
-                
-                <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-center md:items-start text-center md:text-left">
-                    
-                    <a href="#home" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-400 uppercase tracking-tighter pr-4">
-                        AMÔ<br>BOX
-                    </a>
-                    
-                    <div class="flex flex-col gap-2.5 text-gray-700 mt-0.5 font-medium items-center md:items-start">
-                        <a href="#faq" class="footer-link w-max">Dúvidas frequentes</a>
-                        <a href="termos.html" class="footer-link w-max">Termos de uso</a>
-                        <a href="termos.html" class="footer-link w-max">Política de privacidade</a>
-                    </div>
-                </div>
-
-                <div class="flex gap-4 items-center">
-                    <a href="https://www.instagram.com/box.amo" target="_blank" class="social-icon-wrapper" title="Siga @box.amo no Instagram">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    </a>
-                </div>
-
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 border-t border-gray-100 pt-5 mt-2">
-                
-                <div class="text-xs text-gray-500 leading-relaxed text-center md:text-left">
-                    Amô Box Comércio de Cosméticos LTDA - CNPJ: 66.204.527/0001-46<br>
-                    Conjunto Residencial Araretama - Pindamonhangaba/SP - CEP: 12423-000
-                </div>
-
-                <div class="flex flex-col items-center md:items-end gap-1.5">
-                    <span class="block text-xs font-bold text-gray-900 uppercase tracking-widest text-center">Certificados</span>
-                    
-                    <div class="flex gap-3 items-center">
-                        <a href="https://www.reclameaqui.com.br/amobox-empresa/" target="_blank" class="hover:opacity-80 transition-opacity">
-                            <div class="bg-white border-2 border-[#a4c936] rounded-lg p-1.5 flex flex-col items-center justify-center w-20 h-20 shadow-sm">
-                                <div class="w-9 h-9 bg-[#4aa530] rounded-full flex items-center justify-center text-white text-lg font-bold mb-0.5 shadow-inner">:)</div>
-                                <span class="text-[9px] font-bold text-gray-700 tracking-tight">ÓTIMO</span>
-                                <span class="text-[8px] font-black text-[#6bb931] tracking-tighter leading-none mt-1">ReclameAQUI</span>
-                            </div>
-                        </a>
-
-                        <div class="hover:opacity-80 transition-opacity cursor-pointer">
-                            <div class="bg-white rounded-lg p-1.5 flex flex-col items-center justify-center w-20 h-20 border border-gray-100 shadow-sm">
-                                <div class="w-10 h-10 border-[3px] border-t-gray-500 border-r-gray-500 border-b-green-500 border-l-green-500 rounded-full flex justify-center items-center relative">
-                                    <div class="flex gap-1 absolute mt-1">
-                                        <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                                        <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                <span class="text-[9px] font-bold text-gray-600 mt-1.5">eu<span class="text-green-500">reciclo</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-        </div>
-    </footer>
-
     <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-white p-6 rounded-3xl shadow-2xl z-[120] border border-gray-100 hidden transition-opacity duration-500">
         <div class="flex items-start gap-4">
             <div class="text-4xl drop-shadow-sm">🍪</div>
@@ -732,7 +913,7 @@
             // Muda de slide a cada 5 segundos (5000ms)
             autoPlayInterval = setInterval(() => {
                 moveSlide(1);
-            }, 10000); 
+            }, 5000); 
         }
 
         function resetAutoPlay() {
@@ -867,6 +1048,7 @@ async function enviarQuiz(event) {
                     timestamp: new Date().toISOString()
                 }]
             };
+              
 
             // 2. DADOS QUE VÃO PARA A PLANILHA
             const payloadPlanilha = {
@@ -1019,61 +1201,59 @@ async function enviarQuiz(event) {
             }, 100);
         });
 
-// ---------------------------------------------------
-        // LÓGICA DO TRAÇO ATIVO NO MENU (SCROLLSPY)
+        // ---------------------------------------------------
+        // 7. LÓGICA DO MENU ATIVO (SCROLL SPY)
         // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-link");
 
-            function atualizarTracoMenu() {
-                let current = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    
-                    // O traço muda um pouco antes da seção chegar no topo da tela
-                    if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
-                        current = section.getAttribute('id');
+            const observerOptions = {
+                root: null,
+                rootMargin: "-20% 0px -60% 0px", 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute("id");
+                        if (!id) return;
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                        
+                        if (activeLink) {
+                            navLinks.forEach((link) => link.classList.remove("active-link"));
+                            activeLink.classList.add("active-link");
+                        }
                     }
                 });
+            }, observerOptions);
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active-link');
-                    // Se o link do menu bater com a seção atual, ele acende!
-                    if (current && link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active-link');
-                    }
-                });
-            }
-
-            // Fica de olho toda vez que a pessoa rolar a página
-            window.addEventListener('scroll', atualizarTracoMenu);
-            // Executa uma vez logo que abre o site para acender o "Início"
-            atualizarTracoMenu();
+            sections.forEach((section) => observer.observe(section));
         });
-    // ---------------------------------------------------
-        // LÓGICA DO MENU DE CELULAR (HAMBURGUER)
+
+       // ---------------------------------------------------
+        // 8. LÓGICA DO MENU MOBILE (HAMBÚRGUER)
         // ---------------------------------------------------
         document.addEventListener("DOMContentLoaded", function() {
             const btnMobile = document.getElementById('btn-mobile');
             const menuMobile = document.getElementById('menu-mobile');
+            const linksMobile = menuMobile.querySelectorAll('a');
 
-            if(btnMobile && menuMobile) {
-                // Abre e fecha ao clicar no ícone
-                btnMobile.addEventListener('click', () => {
-                    menuMobile.classList.toggle('hidden');
-                });
+            // Abre e fecha o menu ao clicar no hambúrguer
+            btnMobile.addEventListener('click', () => {
+                // Alterna entre a classe 'hidden' (escondido) e 'flex' (mostrando em coluna)
+                menuMobile.classList.toggle('hidden');
+                menuMobile.classList.toggle('flex');
+            });
 
-                // Fecha o menu automaticamente quando a pessoa clica em algum link
-                const linksMobile = menuMobile.querySelectorAll('a, button');
-                linksMobile.forEach(link => {
-                    link.addEventListener('click', () => {
-                        menuMobile.classList.add('hidden');
-                    });
+            // Fecha o menu automaticamente quando a pessoa clica em qualquer link
+            linksMobile.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuMobile.classList.add('hidden');
+                    menuMobile.classList.remove('flex');
                 });
-            }
+            });
         });
     </script>
 </body>
