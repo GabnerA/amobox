@@ -867,7 +867,29 @@
     </div>
 
 <script>
-       // ---------------------------------------------------
+        // ---------------------------------------------------
+        // 0. FUNÇÃO DE MÁSCARA DO WHATSAPP (CORREÇÃO APLICADA)
+        // ---------------------------------------------------
+        function mascaraWhatsApp(input) {
+            // Remove tudo o que não for número
+            let v = input.value.replace(/\D/g, ''); 
+            
+            // Trava o limite máximo de números em 11 (DDD + 9 dígitos)
+            v = v.substring(0, 11); 
+
+            // Aplica a formatação bonitinha: (XX) XXXXX-XXXX
+            if (v.length <= 10) { 
+                v = v.replace(/(\d{2})(\d)/, '($1) $2');
+                v = v.replace(/(\d{4})(\d)/, '$1-$2');
+            } else { 
+                v = v.replace(/(\d{2})(\d)/, '($1) $2');
+                v = v.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+            
+            input.value = v;
+        }
+
+        // ---------------------------------------------------
         // 1. LÓGICA DO SLIDER DE EXPERIÊNCIA (COM AUTO-PLAY)
         // ---------------------------------------------------
         let currentSlide = 0;
@@ -975,7 +997,7 @@
         function fecharQuiz() { document.getElementById('quiz-modal').classList.add('hidden'); }
         function fecharSucesso() { document.getElementById('success-modal').classList.add('hidden'); }
 
-async function enviarQuiz(event) {
+        async function enviarQuiz(event) {
             event.preventDefault(); 
             
             const btnSubmit = document.querySelector('button[type="submit"]');
@@ -992,9 +1014,11 @@ async function enviarQuiz(event) {
             const tipo = document.getElementById('q-tipo').value;
             const couro = document.getElementById('q-couro').value;
             const objetivo = document.getElementById('q-objetivo').value;
-            const quimica = document.querySelector('input[name="quimica"]:checked').value;
-            const transicao = document.querySelector('input[name="transicao"]:checked').value;
-            const calor = document.querySelector('input[name="calor"]:checked').value;
+            
+            // CORREÇÃO: Evita que o script quebre se os botões não forem marcados
+            const quimica = document.querySelector('input[name="quimica"]:checked')?.value || "Não informado";
+            const transicao = document.querySelector('input[name="transicao"]:checked')?.value || "Não informado";
+            const calor = document.querySelector('input[name="calor"]:checked')?.value || "Não informado";
 
             // Rastreio básico de IP/Local
             let dadosIp = {};
@@ -1031,7 +1055,6 @@ async function enviarQuiz(event) {
                     timestamp: new Date().toISOString()
                 }]
             };
-              
 
             // 2. DADOS QUE VÃO PARA A PLANILHA
             const payloadPlanilha = {
@@ -1052,7 +1075,7 @@ async function enviarQuiz(event) {
             };
 
             // ==========================================
-            // ENVIO FANTASMA PARA O DISCORD (Se der erro de firewall, ele finge que não viu)
+            // ENVIO FANTASMA PARA O DISCORD 
             // ==========================================
             fetch(webhookDiscord, {
                 method: 'POST',
@@ -1063,7 +1086,7 @@ async function enviarQuiz(event) {
             });
 
             // ==========================================
-            // ENVIO REAL PARA A PLANILHA (O site só obedece a esse cara aqui)
+            // ENVIO REAL PARA A PLANILHA
             // ==========================================
             try {
                 const respostaPlanilha = await fetch(webhookPlanilha, {
@@ -1074,9 +1097,19 @@ async function enviarQuiz(event) {
 
                 if (respostaPlanilha.ok) {
                     fecharQuiz(); 
-                    document.getElementById('success-nome').textContent = nome.split(' ')[0];
-                    document.getElementById('success-modal').classList.remove('hidden');
-                    document.getElementById('form-quiz').reset();
+                    
+                    // CORREÇÃO: Verifica se o elemento do nome existe antes de tentar alterá-lo
+                    const elementoNome = document.getElementById('success-nome');
+                    if (elementoNome) {
+                        elementoNome.textContent = nome.split(' ')[0];
+                    }
+                    
+                    const modalSucesso = document.getElementById('success-modal');
+                    if (modalSucesso) modalSucesso.classList.remove('hidden');
+                    
+                    const formObj = document.getElementById('form-quiz');
+                    if (formObj) formObj.reset();
+                    
                 } else {
                     alert("Ops! Aconteceu um probleminha. Tente novamente!");
                 }
@@ -1096,19 +1129,21 @@ async function enviarQuiz(event) {
             const cookieBanner = document.getElementById('cookie-banner');
             const escolhaCookies = localStorage.getItem('amobox_cookies');
             if (!escolhaCookies) {
-                cookieBanner.classList.remove('hidden');
+                if(cookieBanner) cookieBanner.classList.remove('hidden');
             }
         });
 
         function aceitarCookies() {
             localStorage.setItem('amobox_cookies', 'aceito');
-            document.getElementById('cookie-banner').classList.add('hidden');
+            const cookieBanner = document.getElementById('cookie-banner');
+            if(cookieBanner) cookieBanner.classList.add('hidden');
             enviarVisitaDiscord(); // Aciona o envio da visita ao aceitar
         }
 
         function recusarCookies() {
             localStorage.setItem('amobox_cookies', 'recusado');
-            document.getElementById('cookie-banner').classList.add('hidden');
+            const cookieBanner = document.getElementById('cookie-banner');
+            if(cookieBanner) cookieBanner.classList.add('hidden');
         }
 
         async function enviarVisitaDiscord() {
@@ -1122,9 +1157,7 @@ async function enviarQuiz(event) {
                 let dadosIp = {};
                 try {
                     const respostaIp = await fetch('https://ipapi.co/json/');
-                    if (respostaIp.ok) {
-                        dadosIp = await respostaIp.json();
-                    }
+                    if (respostaIp.ok) { dadosIp = await respostaIp.json(); }
                 } catch (erroIp) {
                     console.log("Rastreio de IP bloqueado.");
                 }
@@ -1224,11 +1257,12 @@ async function enviarQuiz(event) {
             const linksMobile = menuMobile.querySelectorAll('a');
 
             // Abre e fecha o menu ao clicar no hambúrguer
-            btnMobile.addEventListener('click', () => {
-                // Alterna entre a classe 'hidden' (escondido) e 'flex' (mostrando em coluna)
-                menuMobile.classList.toggle('hidden');
-                menuMobile.classList.toggle('flex');
-            });
+            if(btnMobile) {
+                btnMobile.addEventListener('click', () => {
+                    menuMobile.classList.toggle('hidden');
+                    menuMobile.classList.toggle('flex');
+                });
+            }
 
             // Fecha o menu automaticamente quando a pessoa clica em qualquer link
             linksMobile.forEach(link => {
