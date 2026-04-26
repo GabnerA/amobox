@@ -887,6 +887,51 @@
         </button>
     </div>
 </div>
+    <div id="newsletter-popup" class="fixed inset-0 z-[150] flex items-center justify-center bg-black/60 backdrop-blur-sm hidden px-4 opacity-0 transition-opacity duration-500">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden relative transform scale-95 transition-transform duration-500" id="newsletter-content">
+        
+        <button onclick="fecharNewsletter()" class="absolute top-4 right-4 text-white hover:text-gray-200 font-bold text-2xl z-10">&times;</button>
+
+        <div class="bg-orange-brand p-8 text-white text-center relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-24 h-24 bg-white opacity-10 rounded-full blur-xl"></div>
+            
+            <h3 class="text-3xl font-black uppercase tracking-tight mb-2">Ganhe 10% OFF!</h3>
+            <p class="text-sm opacity-95 font-medium">Deixe seu e-mail para receber um cupom exclusivo na sua primeira Amô Box e ficar por dentro das novidades.</p>
+        </div>
+
+        <div class="p-7">
+            <form id="form-newsletter" onsubmit="enviarNewsletter(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">Seu melhor E-mail *</label>
+                    <input type="email" id="nl-email" required placeholder="contato@exemplo.com" class="w-full border border-gray-300 p-3.5 rounded-xl focus:outline-none focus:border-orange-brand text-sm bg-gray-50 focus:bg-white transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wide">WhatsApp <span class="text-gray-400 font-normal lowercase">(Opcional)</span></label>
+                    <input type="tel" id="nl-whatsapp" oninput="mascaraWhatsApp(this)" placeholder="(11) 99999-9999" class="w-full border border-gray-300 p-3.5 rounded-xl focus:outline-none focus:border-orange-brand text-sm bg-gray-50 focus:bg-white transition-colors">
+                    <p class="text-[10px] text-gray-400 mt-1">Se preencher, te avisamos de promos relâmpago por lá!</p>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="btn-nl-submit" class="w-full bg-orange-brand text-white font-bold py-4 rounded-xl text-lg hover:bg-orange-500 transition-all shadow-[0_4px_14px_0_rgba(255,140,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,140,0,0.23)] hover:-translate-y-0.5">
+                        Quero meu Desconto
+                    </button>
+                    <button type="button" onclick="fecharNewsletter()" class="w-full text-center text-xs text-gray-400 hover:text-gray-600 font-medium mt-4 underline decoration-gray-300">
+                        Não, obrigado. Prefiro pagar o valor cheio.
+                    </button>
+                </div>
+            </form>
+
+            <div id="nl-success" class="hidden text-center py-6">
+                <div class="text-6xl mb-4 animate-bounce">🎉</div>
+                <h4 class="text-2xl font-black text-gray-900 mb-2">Tudo certo!</h4>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6">Seu cadastro foi realizado. Fique de olho na sua caixa de entrada (e no spam) para resgatar seu benefício!</p>
+                <button onclick="fecharNewsletter()" class="w-full bg-gray-100 text-gray-800 font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors">
+                    Voltar para o site
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="whatsapp-widget" class="fixed bottom-6 right-6 z-[100] flex flex-col items-end opacity-0 translate-y-10 transition-all duration-700 hidden">
     
     <div id="whatsapp-popup" class="bg-white rounded-2xl shadow-2xl mb-4 w-72 md:w-80 overflow-hidden hidden transform origin-bottom-right transition-all duration-300 border border-gray-100">
@@ -1410,6 +1455,104 @@ if (resposta.ok) {
         }
     } catch (error) {
         alert("Erro de conexão. Verifique sua internet.");
+    } finally {
+        btn.innerHTML = textoOriginal;
+        btn.disabled = false;
+    }
+}
+    // ---------------------------------------------------
+// 10. LÓGICA DO POP-UP DE NEWSLETTER / CUPOM
+// ---------------------------------------------------
+let popUpNewsletterExibido = false;
+
+function mostrarNewsletter() {
+    // Só mostra se ainda não foi exibido nesta sessão
+    if (!popUpNewsletterExibido && !sessionStorage.getItem('newsletter_fechada')) {
+        const popup = document.getElementById('newsletter-popup');
+        const content = document.getElementById('newsletter-content');
+        
+        if (popup && content) {
+            popup.classList.remove('hidden');
+            // Pequeno delay para a animação de fade in e zoom funcionar
+            setTimeout(() => {
+                popup.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 50);
+            
+            popUpNewsletterExibido = true;
+            sessionStorage.setItem('newsletter_fechada', 'true'); // Marca que já viu
+        }
+    }
+}
+
+function fecharNewsletter() {
+    const popup = document.getElementById('newsletter-popup');
+    const content = document.getElementById('newsletter-content');
+    
+    if (popup && content) {
+        popup.classList.add('opacity-0');
+        content.classList.add('scale-95');
+        
+        // Espera a animação acabar para esconder a div de fato
+        setTimeout(() => {
+            popup.classList.add('hidden');
+        }, 500);
+    }
+}
+
+// Gatilho 1: Aparece após 20 segundos
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(mostrarNewsletter, 20000); 
+});
+
+// Gatilho 2: Aparece ao rolar a página até perto do fim
+window.addEventListener('scroll', () => {
+    // Calcula o quão perto o usuário está do fundo (faltando 300px)
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
+        mostrarNewsletter();
+    }
+});
+
+// Função para enviar os dados para a mesma planilha
+async function enviarNewsletter(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const btn = document.getElementById('btn-nl-submit');
+    const successMsg = document.getElementById('nl-success');
+    
+    const textoOriginal = btn.innerHTML;
+    btn.innerHTML = "Garantindo cupom...";
+    btn.disabled = true;
+
+    const email = document.getElementById('nl-email').value;
+    const whats = document.getElementById('nl-whatsapp').value || "Não preenchido (Opcional)";
+
+    // Aproveitando o mesmo SheetMonkey, identificando na coluna "Plano"
+    const payloadPlanilha = {
+        "Data": new Date().toLocaleString('pt-BR'),
+        "Plano": "🌟 LEAD NEWSLETTER / CUPOM",
+        "Nome": "-",
+        "WhatsApp": whats,
+        "Email": email,
+        "Idade": "-", "Gênero": "-", "Curvatura": "-", "Couro": "-", "Objetivo": "-", "Química": "-", "Transição": "-", "Usa Calor": "-", "Cidade": "-"
+    };
+
+    try {
+        const resposta = await fetch('https://api.sheetmonkey.io/form/irGyNiigWjLyUsbKPv49rE', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payloadPlanilha)
+        });
+
+        if (resposta.ok) {
+            form.classList.add('hidden'); // Esconde o form
+            successMsg.classList.remove('hidden'); // Mostra os parabéns
+        } else {
+            alert("Erro ao cadastrar e-mail. Tente novamente.");
+        }
+    } catch (error) {
+        alert("Sem conexão com a internet.");
     } finally {
         btn.innerHTML = textoOriginal;
         btn.disabled = false;
