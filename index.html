@@ -912,8 +912,10 @@
                 </button>
             </form>
             
-            <div id="wa-success" class="hidden text-center text-sm text-green-600 font-bold mt-4 bg-green-50 p-2 rounded-lg">
-                ✅ Tudo certo! Já vamos te chamar.
+<div id="wa-success" class="hidden text-center text-sm mt-4 bg-green-50 p-3 rounded-lg border border-green-200">
+                <p class="font-bold text-green-600 mb-1">✅ Tudo certo! Vamos entrar em contato.</p>
+                <p class="text-gray-600">Ou, se preferir, <a href="https://wa.me/5512992145710" target="_blank" class="text-[#25D366] font-bold underline hover:text-[#1ebe57]">clique aqui</a> para iniciar a conversa agora mesmo.</p>
+            </div>
             </div>
         </div>
     </div>
@@ -1399,15 +1401,12 @@ async function enviarWhatsApp(event) {
             body: JSON.stringify(payloadPlanilha)
         });
 
-        if (resposta.ok) {
-            form.reset(); // Limpa os campos
-            successMsg.classList.remove('hidden'); // Mostra a mensagem de sucesso
+if (resposta.ok) {
+            form.reset(); // Limpa os campos preenchidos
+            form.classList.add('hidden'); // Esconde o formulário para a tela ficar limpa
+            successMsg.classList.remove('hidden'); // Mostra a mensagem com o link
             
-            // Fecha o popup sozinho depois de 3 segundos
-            setTimeout(() => {
-                successMsg.classList.add('hidden');
-                toggleWhatsApp();
-            }, 3000);
+            // Dica: O popup vai ficar aberto até o cliente fechar no 'x' ou clicar no link.
         } else {
             alert("Não conseguimos enviar sua solicitação. Tente novamente!");
         }
