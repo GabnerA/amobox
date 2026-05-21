@@ -1196,7 +1196,7 @@ fetch(apiDiscord, {
             // ==========================================
             // ENVIO FANTASMA PARA O DISCORD 
             // ==========================================
-            fetch(webhookDiscord, {
+                 fetch(apiDiscord, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payloadDiscord)
