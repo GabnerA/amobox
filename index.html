@@ -1143,12 +1143,7 @@
 
 const apiDiscord = "/api/discord"; 
 
-fetch(apiDiscord, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payloadDiscord)
-}).catch(() => {
-});            const webhookPlanilha = "https://api.sheetmonkey.io/form/irGyNiigWjLyUsbKPv49rE"; 
+            const webhookPlanilha = "https://api.sheetmonkey.io/form/irGyNiigWjLyUsbKPv49rE"; 
 
             // 1. DADOS QUE VÃO PARA O DISCORD
             const payloadDiscord = {
@@ -1174,7 +1169,12 @@ fetch(apiDiscord, {
                     timestamp: new Date().toISOString()
                 }]
             };
-
+fetch(apiDiscord, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payloadDiscord)
+}).catch(() => {
+});
             // 2. DADOS QUE VÃO PARA A PLANILHA
             const payloadPlanilha = {
                 "Data": new Date().toLocaleString('pt-BR'),
