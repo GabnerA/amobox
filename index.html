@@ -1265,8 +1265,9 @@ fetch(apiDiscord, {
             if(cookieBanner) cookieBanner.classList.add('hidden');
         }
 
-        async function enviarVisitaDiscord() {
-            const webhookVisitas = "https://discord.com/api/webhooks/1491513588190548162/3Yss_8TjhW29fUZIXN38vGXDl-NUQ4j75Nd7AelqS3ecumWxOpkvYbACVuY3WkV4txQx";
+async function enviarVisitaDiscord() {
+    // Nova rota apontando para a API
+    const apiVisitas = "/api/visitas";
 
             try {
                 const navegador = navigator.userAgent;
@@ -1299,11 +1300,11 @@ fetch(apiDiscord, {
                     }]
                 };
 
-                await fetch(webhookVisitas, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                await fetch(apiVisitas, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
 
             } catch (error) {
                 console.error("Erro ao registrar visita.");
