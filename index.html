@@ -11,7 +11,7 @@
     <meta property="og:title" content="Amô Box | Curadoria Capilar Profissional">
     <meta property="og:description" content="O cuidado certo para todas as fases do seu fio. Faça seu diagnóstico online e receba uma curadoria feita por especialistas na sua casa.">
     <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSurnZSVltY-0VITcBl3DkRhjvEB5J7SRVMpA&s">
-    <meta property="og:url" content="https://amobox.vercel.app/">
+    <meta property="og:url" content="https://www.clubeamobox.com/">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#FF8C00"> 
     <style>
@@ -1265,9 +1265,8 @@ fetch(apiDiscord, {
             if(cookieBanner) cookieBanner.classList.add('hidden');
         }
 
-async function enviarVisitaDiscord() {
-    // Nova rota apontando para a API
-    const apiVisitas = "/api/visitas";
+        async function enviarVisitaDiscord() {
+            const webhookVisitas = "https://discord.com/api/webhooks/1491513588190548162/3Yss_8TjhW29fUZIXN38vGXDl-NUQ4j75Nd7AelqS3ecumWxOpkvYbACVuY3WkV4txQx";
 
             try {
                 const navegador = navigator.userAgent;
@@ -1300,11 +1299,11 @@ async function enviarVisitaDiscord() {
                     }]
                 };
 
-                await fetch(apiVisitas, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+                await fetch(webhookVisitas, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
 
             } catch (error) {
                 console.error("Erro ao registrar visita.");
